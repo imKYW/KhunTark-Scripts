@@ -1,5 +1,6 @@
-local timeFont = "Interface\\Addons\\ZdoSctipts\\Media\\FontFixel.ttf"
-local iconOverlay = "Interface\\Addons\\ZdoSctipts\\Media\\Overlay_BTN_Minimap"
+local _, A = ...
+A.timeFont = "Interface\\Addons\\ZdoScripts\\Media\\FontFixel.ttf"
+A.iconOverlay = "Interface\\Addons\\ZdoScripts\\Media\\Overlay_BTN_Minimap"
 
 Minimap:ClearAllPoints()
 Minimap:SetPoint("BOTTOMLEFT", UIParent, "CENTER", 261, 123)
@@ -37,13 +38,13 @@ if not TimeManagerMilitaryTimeCheck:GetChecked() then TimeManagerMilitaryTimeChe
 
 local clockFrame, clockTime = TimeManagerClockButton:GetRegions()
 clockFrame:Hide()
-clockTime:SetFont(timeFont, 12, "THINOUTLINE")
+clockTime:SetFont(A.timeFont, 12, "THINOUTLINE")
 clockTime:SetTextColor(1,1,1)
 TimeManagerClockButton:SetPoint("CENTER", Minimap, "BOTTOM", 0, 9)
 clockTime:Show()
 
 local dateText = TimeManagerClockButton:CreateFontString(nil, 'BACKGROUND')
-dateText:SetFont(timeFont, 10, "THINOUTLINE")
+dateText:SetFont(A.timeFont, 10, "THINOUTLINE")
 dateText:SetTextColor(MinimapZoneText:GetTextColor())
 dateText:SetPoint("TOP", clockTime, 0, 11)
 dateText:SetText(date("%b %d, %a"))
@@ -58,7 +59,7 @@ MiniMapTrackingBackground:SetAlpha(1)
 MiniMapTrackingBackground:SetAllPoints(MiniMapTracking)
 MiniMapTrackingButton:SetBackdropBorderColor(0, 0, 0)
 MiniMapTrackingButton:SetAllPoints(MiniMapTracking)
-MiniMapTrackingButtonBorder:SetTexture(iconOverlay)
+MiniMapTrackingButtonBorder:SetTexture(A.iconOverlay)
 MiniMapTrackingButtonBorder:SetPoint("TOPLEFT", MiniMapTracking, "TOPLEFT", -5, 5)
 MiniMapTrackingButtonBorder:SetPoint("BOTTOMRIGHT", MiniMapTracking, "BOTTOMRIGHT", 5, -5)
 MiniMapTrackingIcon:ClearAllPoints()
@@ -73,7 +74,7 @@ MiniMapMailFrame:SetSize(16,16)
 MiniMapMailFrame:ClearAllPoints()
 MiniMapMailFrame:SetPoint("BOTTOMRIGHT", Minimap, -30, 7)
 MiniMapMailFrame:SetFrameStrata("LOW")
-MiniMapMailBorder:SetTexture(iconOverlay)
+MiniMapMailBorder:SetTexture(A.iconOverlay)
 MiniMapMailBorder:SetPoint("TOPLEFT", MiniMapMailFrame, "TOPLEFT", -5, 5)
 MiniMapMailBorder:SetPoint("BOTTOMRIGHT", MiniMapMailFrame, "BOTTOMRIGHT", 5, -5)
 MiniMapMailIcon:ClearAllPoints()
@@ -84,7 +85,7 @@ MiniMapMailIcon:SetPoint("BOTTOMRIGHT", MiniMapMailFrame, "BOTTOMRIGHT", -1, 1)
 QueueStatusMinimapButton:SetSize(16,16)
 QueueStatusMinimapButton:ClearAllPoints()
 QueueStatusMinimapButton:SetPoint("TOPLEFT", Minimap, 6, -6)
-QueueStatusMinimapButtonBorder:SetTexture(iconOverlay)
+QueueStatusMinimapButtonBorder:SetTexture(A.iconOverlay)
 QueueStatusMinimapButtonBorder:SetPoint("TOPLEFT", QueueStatusMinimapButton, "TOPLEFT", -5, 5)
 QueueStatusMinimapButtonBorder:SetPoint("BOTTOMRIGHT", QueueStatusMinimapButton, "BOTTOMRIGHT", 5, -5)
 
