@@ -31,7 +31,7 @@ end
 otFrame:ClearAllPoints()
 otFrame:SetMovable(true)
 otFrame:SetUserPlaced(true)
-otFrame:SetPoint(anchor, UIParent, anchor, xOff, yOff)
+otFrame:SetPoint("TOPRIGHT", Minimap, "BOTTOMRIGHT", 0, -10)
 SetHeightFrame()
 otFrame:SetMovable(false)
 

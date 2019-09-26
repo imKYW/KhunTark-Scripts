@@ -3,8 +3,9 @@ A.timeFont = "Interface\\Addons\\ZdoScripts\\Media\\FontFixel.ttf"
 A.iconOverlay = "Interface\\Addons\\ZdoScripts\\Media\\Overlay_BTN_Minimap"
 
 Minimap:ClearAllPoints()
-Minimap:SetPoint("BOTTOMLEFT", UIParent, "CENTER", 261, 123)
-Minimap:SetSize(166, 166)
+Minimap:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -10, -20)
+Minimap:SetSize(185, 185)
+--Minimap:SetScale(1.1)
 
 Minimap:SetBackdrop({
 	bgFile =  "Interface\\ChatFrame\\ChatFrameBackground",
@@ -139,22 +140,3 @@ Minimap:SetScript("OnMouseUp", function(self, btn)
 		Minimap_OnClick(self)
 	end
 end)
-
--- Auto Hide on Combat
-local unHideBTN = CreateFrame('CheckButton', nil, parentFrame, 'ChatConfigCheckButtonTemplate')
-unHideBTN:SetPoint("BOTTOMLEFT", Minimap, "TOPLEFT", -2, -1)
-unHideBTN:SetSize(14,15)
-unHideBTN.tooltip = "Unhide on combat"
-
-local function HideCombat(self, event, addon)
-	if not unHideBTN:GetChecked() and event == "PLAYER_REGEN_DISABLED" then
-	    Minimap:Hide()
-	    unHideBTN:Hide()
-	elseif event == "PLAYER_REGEN_ENABLED" then
-		Minimap:Show()
-		unHideBTN:Show()
-    end
-end
-Minimap:SetScript("OnEvent", HideCombat)
-Minimap:RegisterEvent("PLAYER_REGEN_ENABLED")
-Minimap:RegisterEvent("PLAYER_REGEN_DISABLED")
