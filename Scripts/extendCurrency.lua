@@ -164,7 +164,7 @@ mainFrame:RegisterEvent('TRADE_MONEY_CHANGED')
 mainFrame:RegisterEvent('PLAYER_ENTERING_WORLD')
 mainFrame:RegisterEvent('MERCHANT_CLOSED')
 
-mainFrame:SetWidth(300)
+mainFrame:SetWidth(50)
 mainFrame:SetHeight(15)
 mainFrame:SetPoint(position_REF, UIParent, position_REF, position_X, position_Y)
 

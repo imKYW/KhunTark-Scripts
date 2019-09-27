@@ -4,7 +4,9 @@
     <Script file="blizzObjectiveTracker.lua" />
     <Script file="blizzMinimap.lua" />
     <Script file="blizzBuff.lua" />
+
     <Script file="extendInfo.lua" />
     <Script file="extendCurrency.lua" />
+    <Script file="extendAutoRepairSell.lua" />
 
 </Ui>
