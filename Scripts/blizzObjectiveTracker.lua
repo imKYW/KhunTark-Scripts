@@ -18,7 +18,7 @@ local function SetHeightFrame()
     local screenHeight = GetScreenHeight()
     local gapFromTop = screenHeight - frameTop
     local maxHeight = screenHeight - gapFromTop
-    local objectiveTrackerFrameHeight = math.min(maxHeight, 880)
+    local objectiveTrackerFrameHeight = math.min(maxHeight, 600)
 
     otFrame:SetHeight(objectiveTrackerFrameHeight)
 end
