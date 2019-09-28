@@ -8,5 +8,6 @@
     <Script file="Misc.lua" />
 
     <Script file="ButtonTemplate.lua" />
+    <Script file="OverrideHotkey.lua" />
 
 </Ui>
