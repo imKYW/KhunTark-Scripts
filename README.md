@@ -1,4 +1,5 @@
 # ZdoScripts
+WoW UI for Lightweight : 166kb now.
 
 ### Replace to Blizzard Interface
 - Actionbar
