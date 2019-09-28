@@ -131,7 +131,7 @@ hooksecurefunc("UpdateMicroButtons",function()
     --for i= 0, 3 do  _G[ "CharacterBag"..i.."Slot" ]:Hide() end
     --MainMenuBarBackpackButton:SetScale(0.9)
     MainMenuBarBackpackButton:ClearAllPoints()
-    MainMenuBarBackpackButton:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -5, 28)
+    MainMenuBarBackpackButton:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -8, 28)
     CharacterBag0Slot:ClearAllPoints()
     CharacterBag0Slot:SetScale(0.9)
     CharacterBag0Slot:SetPoint("BOTTOMRIGHT", MainMenuBarBackpackButton, "BOTTOMLEFT", -3, 0)

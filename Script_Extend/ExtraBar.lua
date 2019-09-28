@@ -14,7 +14,10 @@ for i=13, 24 do
     else
         button:SetPoint("LEFT", _G['ExtraBarButton'..i-13], "RIGHT", 6, 0)
     end
-    --button:Show()
+
+    -- Show Grid
+    button:SetAttribute("showgrid", 1) --_G['ExtraBarButton'..i-12]:SetAttribute("showgrid", 1)
+    ActionButton_ShowGrid(button, 1) --ActionButton_ShowGrid(_G['ExtraBarButton'..i-12], 1)
 end
 
 ------------------------------------------------------------------------------------------
