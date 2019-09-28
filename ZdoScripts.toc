@@ -3,4 +3,5 @@
 ## Notes: Enable useful script for myself
 ## Author: Zdo-Frostmourne
 
-Scripts\_.xml
+Script_Blizzard\_.xml
+Script_Extend\_.xml
