@@ -1,14 +1,14 @@
 <Bindings>
-  <Binding name="EXTRABARBUTTON1" header="EXTRABAR" />
-  <Binding name="EXTRABARBUTTON2" />
-  <Binding name="EXTRABARBUTTON3" />
-  <Binding name="EXTRABARBUTTON4" />
-  <Binding name="EXTRABARBUTTON5" />
-  <Binding name="EXTRABARBUTTON6" />
-  <Binding name="EXTRABARBUTTON7" />
-  <Binding name="EXTRABARBUTTON8" />
-  <Binding name="EXTRABARBUTTON9" />
-  <Binding name="EXTRABARBUTTON10" />
-  <Binding name="EXTRABARBUTTON11" />
-  <Binding name="EXTRABARBUTTON12" />
+  <Binding name="EXTRABARBUTTON1" header="EXTRABAR" category="Zdo's Scripts" />
+  <Binding name="EXTRABARBUTTON2" category="Zdo's Scripts" />
+  <Binding name="EXTRABARBUTTON3" category="Zdo's Scripts" />
+  <Binding name="EXTRABARBUTTON4" category="Zdo's Scripts" />
+  <Binding name="EXTRABARBUTTON5" category="Zdo's Scripts" />
+  <Binding name="EXTRABARBUTTON6" category="Zdo's Scripts" />
+  <Binding name="EXTRABARBUTTON7" category="Zdo's Scripts" />
+  <Binding name="EXTRABARBUTTON8" category="Zdo's Scripts" />
+  <Binding name="EXTRABARBUTTON9" category="Zdo's Scripts" />
+  <Binding name="EXTRABARBUTTON10" category="Zdo's Scripts" />
+  <Binding name="EXTRABARBUTTON11" category="Zdo's Scripts" />
+  <Binding name="EXTRABARBUTTON12" category="Zdo's Scripts" />
 </Bindings>
