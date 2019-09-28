@@ -1,0 +1,14 @@
+<Bindings>
+  <Binding name="EXTRABARBUTTON1" header="EXTRABAR" />
+  <Binding name="EXTRABARBUTTON2" />
+  <Binding name="EXTRABARBUTTON3" />
+  <Binding name="EXTRABARBUTTON4" />
+  <Binding name="EXTRABARBUTTON5" />
+  <Binding name="EXTRABARBUTTON6" />
+  <Binding name="EXTRABARBUTTON7" />
+  <Binding name="EXTRABARBUTTON8" />
+  <Binding name="EXTRABARBUTTON9" />
+  <Binding name="EXTRABARBUTTON10" />
+  <Binding name="EXTRABARBUTTON11" />
+  <Binding name="EXTRABARBUTTON12" />
+</Bindings>
