@@ -1,7 +1,9 @@
 ## Interface: 80205
 ## Title: Zdo's Scripts
+## Version: 8.2.5.1
 ## Notes: Enable useful script for myself
 ## Author: Zdo-Frostmourne
+## SavedVariables: vZSDB
 
 Script_Blizzard\_.xml
 Script_Extend\_.xml
