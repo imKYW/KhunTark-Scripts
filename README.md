@@ -7,7 +7,7 @@ WoW UI for Lightweight : 166kb now.
 - ObjectiveTracker
 
 ### Extend Function
-- Info Bar (with gabage colletion - left click)
+- Info Bar (with garbage collection - left click)
 - Currency Bar
 - Extra Bar
 - Override Hotkey
