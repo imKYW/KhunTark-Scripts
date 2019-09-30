@@ -1,6 +1,24 @@
 local _G = _G
 local Noop = function() end
 
+local DefaultSetItemRef = SetItemRef
+
+function SetItemRef(link, ...)
+    local type, value = link:match("(%a+):(.+)")
+    if IsAltKeyDown() and type == "player" then
+        InviteUnit(value:match("([^:]+)"))
+    elseif (type == "url") then
+        local editBox = LAST_ACTIVE_CHAT_EDIT_BOX or ChatFrame1EditBox
+        if not editBox then return end
+        editBox:SetText(value)
+        editBox:SetFocus()
+        editBox:HighlightText()
+        if not editBox:IsShown() then editBox:Show() end
+    else
+        return DefaultSetItemRef(link, ...)
+    end
+end
+
 -- Template of Chat Frame
 local function SkinChat(self)
     if not self then return end
@@ -61,15 +79,15 @@ local function OnMouseScroll(self, dir)
     end
 end
 
---editbox font
+-- Editbox Font
 ChatFontNormal:SetFont(STANDARD_TEXT_FONT, 13, "OUTLINE")
 ChatFontNormal:SetShadowOffset(1, -1)
 ChatFontNormal:SetShadowColor(0, 0, 0, 0.25)
 
---font size
+--Font Size
 CHAT_FONT_HEIGHTS = {10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
 
---tab
+-- Tab
 CHAT_TAB_HIDE_DELAY = 1
 CHAT_FRAME_TAB_NORMAL_MOUSEOVER_ALPHA = 0.7
 CHAT_FRAME_TAB_NORMAL_NOMOUSE_ALPHA = 0
@@ -78,7 +96,7 @@ CHAT_FRAME_TAB_SELECTED_NOMOUSE_ALPHA = 0
 CHAT_FRAME_TAB_ALERTING_MOUSEOVER_ALPHA = 0.7
 CHAT_FRAME_TAB_ALERTING_NOMOUSE_ALPHA = 0.7
 
---channels
+-- Channels
 CHAT_WHISPER_GET              = "From %s "
 CHAT_WHISPER_INFORM_GET       = "To %s "
 CHAT_BN_WHISPER_GET           = "From %s "
@@ -123,9 +141,6 @@ SocialBTN:ClearAllPoints()
 SocialBTN:SetPoint("TOPLEFT", _G.ChatFrame1, "TOPLEFT", 0, -2)
 SocialBTN.ClearAllPoints = Noop
 SocialBTN.SetPoint = Noop
-
---QuickJoinToastButton:EnableMouse(false)
-
 
 -- Set Main Chat Frame
 for i = 1, NUM_CHAT_WINDOWS do

@@ -3,12 +3,12 @@ WoW UI for Lightweight : 166kb now.
 
 ### Replace to Blizzard Interface
 - Actionbar
+- Chat
 - Minimap
 - ObjectiveTracker
 - Buff-Debuff
 
 ### Extend Function
-- Info Bar (with garbage collection - left click)
 - Currency Bar
 - Extra Bar
 - Override Hotkey
@@ -19,7 +19,9 @@ WoW UI for Lightweight : 166kb now.
 - /rl /기 - /reload
 - /ww /ㅈㅈ - /readycheck
 
+### Unstable Channel
+- Info Bar (with garbage collection - left click) : has memory leak
+
 ### Todos
-- Chat
-- Item Lv viewer
+- Item Lv Paperdoll
 - ...
