@@ -1,30 +1,26 @@
 local A, L = ...
 
-local gg = true -- 길드 수리비 사용 한다(true), 안한다(false)
 local stop = true
 local list = {}
 
 local function RepairNow()
-    local co = GetRepairAllCost()
-    if (not co or co == 0) then return
-    elseif gg and CanGuildBankRepair() then
-        local _, _, gI = GetGuildInfo("player")
-        self:RegisterEvent('UI_ERROR_MESSAGE')
-
-        if  (gI~=0 and GetGuildBankWithdrawMoney()<co) or GetGuildBankMoney()==0
-        or  (GetGuildBankMoney()<co and GetGuildBankMoney()>0) then
-            RepairAllItems()
-            print("|cFFFFCC00 수리비 : ", GetMoneyString(co).."  |c0000CC00(길드 수리비 부족)" )
-        else
+    local cost = GetRepairAllCost()
+    local gbmoney = GetGuildBankMoney()
+    if cost > 0 and CanGuildBankRepair() then
+        if GetGuildBankWithdrawMoney() >= cost and gbmoney >= cost then
             RepairAllItems(1)
-            print("|cFFFFCC00 수리비 |c0000CC00(길드) |cFFFFCC00: ", GetMoneyString(co))
+            print(format("|cff00ff00수리비(길드) : %.2fg|r", cost * 0.0001))
+        elseif GetMoney() >= cost then
+            RepairAllItems()
+            print(format("|cffffff00수리비 : %.2fg|r", cost * 0.0001))
+        else
+            print(format("|cffff0000수리비 부족!!|r"))
         end
-        self:UnregisterEvent('UI_ERROR_MESSAGE')
-    elseif  GetMoney() < co then
-        print("|cFFFFCC00 수리비 부족")
-    else
+    elseif cost > 0 and GetMoney() >= cost then
         RepairAllItems()
-        print("|cFFFFCC00 수리비 : ", GetMoneyString(co))
+        print(format("|cffffff00수리비 : %.2fg|r", cost * 0.0001))
+    elseif GetMoney() < cost then
+        print(format("|cffff0000수리비 부족!!|r"))
     end
 end
 
