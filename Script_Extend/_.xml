@@ -2,7 +2,6 @@
 ..\FrameXML\UI.xsd">
 
     <Script file="ExtraBar.lua" />
-    <Script file="Info.lua" />
     <Script file="Currency.lua" />
     <Script file="AutoRepairSell.lua" />
     <Script file="Misc.lua" />
