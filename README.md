@@ -5,6 +5,7 @@ WoW UI for Lightweight : 166kb now.
 - Actionbar
 - Minimap
 - ObjectiveTracker
+- Buff-Debuff
 
 ### Extend Function
 - Info Bar (with garbage collection - left click)
@@ -20,6 +21,5 @@ WoW UI for Lightweight : 166kb now.
 
 ### Todos
 - Chat
-- Buff-Debuff
 - Item Lv viewer
 - ...

@@ -2,7 +2,7 @@
 ..\FrameXML\UI.xsd">
 
     <Script file="Actionbar.lua" />
-    <Script file="ShortcutHotkey.lua" />
+    <Script file="Actionbar_ShortcutHotkey.lua" />
     <Script file="Minimap.lua" />
     <Script file="ObjectiveTracker.lua" />
     <Script file="Buff.lua" />
