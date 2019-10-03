@@ -37,8 +37,6 @@ for _, bar in next, {
     bar:EnableMouse(false);
 end
 
---## layout my bars --
-
 for _, bar in next, {
     MainMenuBar,
     MultiBarLeft,
@@ -210,11 +208,11 @@ local function HideFrame(frame, button)
     button:HookScript("OnLeave", function() frame:SetAlpha(0) end)
 end
 
-if MICRO_BAGS_HIDE then
-    --HideFrame(MicroButtonAndBagsBar,MainMenuBarBackpackButton)
-    --for i= 0, 3  do HideFrame(MicroButtonAndBagsBar, _G["CharacterBag"..i.."Slot"]) end
-    --for i= 1, #MICRO_BUTTONS  do HideFrame(MicroButtonAndBagsBar, _G[MICRO_BUTTONS[i]]) end
-end
+--if MICRO_BAGS_HIDE then
+--    HideFrame(MicroButtonAndBagsBar,MainMenuBarBackpackButton)
+--    for i= 0, 3  do HideFrame(MicroButtonAndBagsBar, _G["CharacterBag"..i.."Slot"]) end
+--    for i= 1, #MICRO_BUTTONS  do HideFrame(MicroButtonAndBagsBar, _G[MICRO_BUTTONS[i]]) end
+--end
 
 -------------------------------------------------------------------------
 -- Action Bar BG FIX
