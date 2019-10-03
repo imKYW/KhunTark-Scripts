@@ -1,5 +1,5 @@
 # ZdoScripts
-WoW UI for Lightweight : 166kb now.
+WoW UI for Lightweight : 238kb now.
 
 ### Replace to Blizzard Interface
 - Actionbar
@@ -7,6 +7,7 @@ WoW UI for Lightweight : 166kb now.
 - Minimap
 - ObjectiveTracker
 - Buff-Debuff
+- Tooltip
 
 ### Extend Function
 - Currency Bar
