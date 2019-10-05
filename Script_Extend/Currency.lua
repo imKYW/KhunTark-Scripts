@@ -209,3 +209,8 @@ end
 mainFrame:SetScript('OnEvent', KBJcurrencyOnEvent)
 mainFrame:SetScript('OnEnter', function() KBJcurrencyTooltip(mainFrame) end)
 mainFrame:SetScript('OnLeave', function() GameTooltip:Hide() end)
+
+_G["TokenFramePopupBackpackCheckBox"]:HookScript("OnClick", function()
+    currencyFrame:SetText(KBJcurrencyMoney().."  "..KBJcurrencyEmblems())
+    mainFrame:SetWidth(currencyFrame:GetStringWidth())
+end)
