@@ -37,40 +37,40 @@ local function GetHexColor(color)
 end
 
 local function OnTooltipSetUnit(self)
-  local unitName, unit = self:GetUnit()
-  if not unit then return end
-  if not UnitIsPlayer(unit) then
-    --unit is not a player
-    --color textleft1 and statusbar by faction color
-    local reaction = UnitReaction(unit, "player")
-    if reaction then
-      local color = FACTION_BAR_COLORS[reaction]
-      if color then
+    local unit = select(2, self:GetUnit())
+    if not unit then return end
+    if not UnitIsPlayer(unit) then
+        --unit is not a player
+        --color textleft1 and statusbar by faction color
+        local reaction = UnitReaction(unit, "player")
+        if reaction then
+            local color = FACTION_BAR_COLORS[reaction]
+            if color then
+                cfg.barColor = color
+                GameTooltipTextLeft1:SetTextColor(color.r,color.g,color.b)
+            end
+        end
+    else
+        --unit is any player
+        local _, unitClass = UnitClass(unit)
+        --color textleft1 and statusbar by class color
+        local color = RAID_CLASS_COLORS[unitClass]
         cfg.barColor = color
         GameTooltipTextLeft1:SetTextColor(color.r,color.g,color.b)
-      end
+        --color textleft2 by guildcolor
+        local unitGuild = GetGuildInfo(unit)
+        if unitGuild then
+            GameTooltipTextLeft2:SetText("<"..unitGuild..">")
+            GameTooltipTextLeft2:SetTextColor(unpack(cfg.guildColor))
+        end
+        if UnitIsAFK(unit) then
+            self:AppendText((" |cff%s<AFK>|r"):format(cfg.afkColorHex))
+        end
     end
-  else
-    --unit is any player
-    local _, unitClass = UnitClass(unit)
-    --color textleft1 and statusbar by class color
-    local color = RAID_CLASS_COLORS[unitClass]
-    cfg.barColor = color
-    GameTooltipTextLeft1:SetTextColor(color.r,color.g,color.b)
-    --color textleft2 by guildcolor
-    local unitGuild = GetGuildInfo(unit)
-    if unitGuild then
-      GameTooltipTextLeft2:SetText("<"..unitGuild..">")
-      GameTooltipTextLeft2:SetTextColor(unpack(cfg.guildColor))
+    --dead?
+    if UnitIsDeadOrGhost(unit) then
+        GameTooltipTextLeft1:SetTextColor(unpack(cfg.deadColor))
     end
-    if UnitIsAFK(unit) then
-      self:AppendText((" |cff%s<AFK>|r"):format(cfg.afkColorHex))
-    end
-  end
-  --dead?
-  if UnitIsDeadOrGhost(unit) then
-    GameTooltipTextLeft1:SetTextColor(unpack(cfg.deadColor))
-  end
 end
 
 local function SetBackdropStyle(self,style)
@@ -97,9 +97,12 @@ local function SetBackdropStyle(self,style)
 end
 
 local function SetDefaultAnchor(self,parent)
-    if _G.InCombatLockdown() and not _G.IsModifierKeyDown() then
+    self:ClearAllPoints()
+    --local x = GetMouseFocus()
+    --if (x == ChatFrame1) or (x == ChatFrame1EditBox) or (x == ChatFrame2) or (x == ChatFrame2EditBox) or (x == ChatFrame3) or (x == ChatFrame3EditBox) or (x == ChatFrame4) or (x == ChatFrame4EditBox) or (x == ChatFrame5) or (x == ChatFrame5EditBox) or (x == ChatFrame6) or (x == ChatFrame6EditBox) or (x == ChatFrame7) or (x == ChatFrame7EditBox) or (x == ChatFrame8) or (x == ChatFrame8EditBox) or (x == ChatFrame9) or (x == ChatFrame9EditBox) or (x == ChatFrame10) or (x == ChatFrame10EditBox) then
+        --return
+    if InCombatLockdown() and not C_PetBattles.IsInBattle() then
         self:SetOwner(parent, "ANCHOR_NONE")
-        self:ClearAllPoints()
         self:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -470, 135)
     else
         self:SetOwner(parent, "ANCHOR_CURSOR")
@@ -141,20 +144,24 @@ hooksecurefunc("GameTooltip_SetBackdropStyle", SetBackdropStyle)
 GameTooltip:HookScript("OnTooltipSetUnit", OnTooltipSetUnit)
 
 --loop over tooltips
+--local tooltips = { GameTooltip,ShoppingTooltip1,ShoppingTooltip2,ItemRefTooltip,ItemRefShoppingTooltip1,ItemRefShoppingTooltip2,WorldMapTooltip,
+--WorldMapCompareTooltip1,WorldMapCompareTooltip2,SmallTextTooltip }
+
+--loop over tooltips
 local tooltips = { GameTooltip,ShoppingTooltip1,ShoppingTooltip2,ItemRefTooltip,ItemRefShoppingTooltip1,ItemRefShoppingTooltip2,WorldMapTooltip,
 WorldMapCompareTooltip1,WorldMapCompareTooltip2,SmallTextTooltip }
 for i, tooltip in next, tooltips do
-    --tooltip:SetScale(cfg.scale)
+    tooltip:SetScale(cfg.scale)
     if tooltip:HasScript("OnTooltipCleared") then
         tooltip:HookScript("OnTooltipCleared", SetBackdropStyle)
     end
 end
 
 --loop over menues
---local menues = {
---    DropDownList1MenuBackdrop,
---    DropDownList2MenuBackdrop,
---}
---for i, menu in next, menues do
---    menu:SetScale(cfg.scale)
---end
+local menues = {
+    DropDownList1MenuBackdrop,
+    DropDownList2MenuBackdrop,
+}
+for i, menu in next, menues do
+    menu:SetScale(cfg.scale)
+end
