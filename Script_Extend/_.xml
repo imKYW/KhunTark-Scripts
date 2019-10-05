@@ -6,6 +6,7 @@
     <Script file="AutoRepairSell.lua" />
     <Script file="Misc.lua" />
 
+    <Script file="OverrideHotkey.lua" />
     <Script file="ButtonTemplate.lua" />
 
 </Ui>
