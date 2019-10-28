@@ -1,14 +1,14 @@
 <Bindings>
-  <Binding name="EXTRABARBUTTON1" header="EXTRABAR" category="Zdo's Scripts" />
-  <Binding name="EXTRABARBUTTON2" category="Zdo's Scripts" />
-  <Binding name="EXTRABARBUTTON3" category="Zdo's Scripts" />
-  <Binding name="EXTRABARBUTTON4" category="Zdo's Scripts" />
-  <Binding name="EXTRABARBUTTON5" category="Zdo's Scripts" />
-  <Binding name="EXTRABARBUTTON6" category="Zdo's Scripts" />
-  <Binding name="EXTRABARBUTTON7" category="Zdo's Scripts" />
-  <Binding name="EXTRABARBUTTON8" category="Zdo's Scripts" />
-  <Binding name="EXTRABARBUTTON9" category="Zdo's Scripts" />
-  <Binding name="EXTRABARBUTTON10" category="Zdo's Scripts" />
-  <Binding name="EXTRABARBUTTON11" category="Zdo's Scripts" />
-  <Binding name="EXTRABARBUTTON12" category="Zdo's Scripts" />
+  <Binding name="EXTRABARBUTTON1" header="EXTRABAR" category="KhunTark's Scripts" />
+  <Binding name="EXTRABARBUTTON2" category="KhunTark's Scripts" />
+  <Binding name="EXTRABARBUTTON3" category="KhunTark's Scripts" />
+  <Binding name="EXTRABARBUTTON4" category="KhunTark's Scripts" />
+  <Binding name="EXTRABARBUTTON5" category="KhunTark's Scripts" />
+  <Binding name="EXTRABARBUTTON6" category="KhunTark's Scripts" />
+  <Binding name="EXTRABARBUTTON7" category="KhunTark's Scripts" />
+  <Binding name="EXTRABARBUTTON8" category="KhunTark's Scripts" />
+  <Binding name="EXTRABARBUTTON9" category="KhunTark's Scripts" />
+  <Binding name="EXTRABARBUTTON10" category="KhunTark's Scripts" />
+  <Binding name="EXTRABARBUTTON11" category="KhunTark's Scripts" />
+  <Binding name="EXTRABARBUTTON12" category="KhunTark's Scripts" />
 </Bindings>

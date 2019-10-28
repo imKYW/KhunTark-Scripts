@@ -1,5 +1,5 @@
 ## Interface: 80205
-## Title: Zdo's Scripts
+## Title: KhunTark's Scripts
 ## Version: 8.2.5.1
 ## Notes: Enable useful script for myself
 ## Author: Zdo-Frostmourne
