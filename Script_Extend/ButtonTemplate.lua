@@ -406,7 +406,7 @@ end
 
 
 
-local mediapath = "Interface\\AddOns\\ZdoScripts\\Media\\"
+local mediapath = "Interface\\AddOns\\KhunTark-Scripts\\Media\\"
 
 local function copyTable(orig)
   local orig_type = type(orig)

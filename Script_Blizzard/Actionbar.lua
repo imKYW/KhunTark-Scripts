@@ -121,15 +121,14 @@ hooksecurefunc("UIParent_ManageFramePositions",  KBJactionbar_layout)
 
 ---------------------------------
 -- ## micro buttons and bags ##--
-
 MicroButtonAndBagsBar:SetScale(0.8)
 MicroButtonAndBagsBar:SetParent(UIParent)   -- show microbuttons when vehicle
 hooksecurefunc("UpdateMicroButtons",function()
     --small bags
     --for i= 0, 3 do  _G[ "CharacterBag"..i.."Slot" ]:Hide() end
-    --MainMenuBarBackpackButton:SetScale(0.9)
+    MainMenuBarBackpackButton:SetScale(1.2)
     MainMenuBarBackpackButton:ClearAllPoints()
-    MainMenuBarBackpackButton:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -8, 28)
+    MainMenuBarBackpackButton:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -8, 8)
     CharacterBag0Slot:ClearAllPoints()
     CharacterBag0Slot:SetScale(0.9)
     CharacterBag0Slot:SetPoint("BOTTOMRIGHT", MainMenuBarBackpackButton, "BOTTOMLEFT", -3, 0)
@@ -146,8 +145,11 @@ hooksecurefunc("UpdateMicroButtons",function()
     -- micro menu bar
     UpdateMicroButtonsParent(MicroButtonAndBagsBar)
     _G[MICRO_BUTTONS[1]]:ClearAllPoints()
-    _G[MICRO_BUTTONS[1]]:SetPoint("TOP", UIParent, "TOP", -130, -5)
+    _G[MICRO_BUTTONS[1]]:SetPoint("BOTTOMRIGHT", CharacterBag3Slot, "BOTTOMLEFT", -270, -2)
     MainMenuBarPerformanceBar:Hide();
+    for _, v in ipairs(MICRO_BUTTONS) do
+        _G[v]:SetScale(0.85)
+    end
 end)
 
 -------------------------------------------------
@@ -197,22 +199,6 @@ OverrideActionBar.LeaveButton:ClearAllPoints()
 OverrideActionBar.LeaveButton:SetPoint("BOTTOMRIGHT", ActionButton12)
 
 hooksecurefunc("OverrideActionBar_Leave", function() ShowPetActionBar(true) end)
-
--------------------------------------------------------------------------
--- Hide Frame
-local function HideFrame(frame, button)
-    if not frame then return end
-    frame:EnableMouse(true)
-    frame:SetAlpha(0)
-    button:HookScript("OnEnter", function() frame:SetAlpha(1) end)
-    button:HookScript("OnLeave", function() frame:SetAlpha(0) end)
-end
-
---if MICRO_BAGS_HIDE then
---    HideFrame(MicroButtonAndBagsBar,MainMenuBarBackpackButton)
---    for i= 0, 3  do HideFrame(MicroButtonAndBagsBar, _G["CharacterBag"..i.."Slot"]) end
---    for i= 1, #MICRO_BUTTONS  do HideFrame(MicroButtonAndBagsBar, _G[MICRO_BUTTONS[i]]) end
---end
 
 -------------------------------------------------------------------------
 -- Action Bar BG FIX

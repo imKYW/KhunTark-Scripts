@@ -1,6 +1,6 @@
 local _, L = ...
-L.timeFont = "Interface\\Addons\\ZdoScripts\\Media\\FontFixel.ttf"
-L.iconOverlay = "Interface\\Addons\\ZdoScripts\\Media\\Overlay_BTN_Minimap"
+L.timeFont = "Interface\\Addons\\KhunTark-Scripts\\Media\\FontFixel.ttf"
+L.iconOverlay = "Interface\\Addons\\KhunTark-Scripts\\Media\\Overlay_BTN_Minimap"
 
 Minimap:ClearAllPoints()
 Minimap:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -10, -20)

@@ -18,7 +18,7 @@ local KBJcurrencyEmblems_Format = function(currencyID)
 
     if amount > 0 then
         local CURRENCY_TEXTURE = "%s\124T"..icon..":%d:%d:2:0\124t"
-        return format(CURRENCY_TEXTURE.." ", BreakUpLargeNumbers(amount), 0, 0)
+        return format(CURRENCY_TEXTURE.." ", BreakUpLargeNumbers(amount), 11, 11)
     else
         return ""
     end
@@ -166,7 +166,7 @@ mainFrame:RegisterEvent('MERCHANT_CLOSED')
 
 mainFrame:SetWidth(50)
 mainFrame:SetHeight(15)
-mainFrame:SetPoint(position_REF, UIParent, position_REF, position_X, position_Y)
+mainFrame:SetPoint("TOPRIGHT", MainMenuBarBackpackButton, "TOPLEFT", -10, 0)
 
 local currencyFrame = mainFrame:CreateFontString(nil, 'OVERLAY')
 currencyFrame:SetPoint(position_Align, mainFrame, position_Align, 0, 0)

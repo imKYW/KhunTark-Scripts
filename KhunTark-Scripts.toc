@@ -3,7 +3,7 @@
 ## Version: 8.2.5.1
 ## Notes: Enable useful script for myself
 ## Author: Zdo-Frostmourne
-## SavedVariables: vZSDB
+## SavedVariables: vKTSDB
 
 Script_Blizzard\_.xml
 Script_Extend\_.xml

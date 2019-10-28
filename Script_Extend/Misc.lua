@@ -45,8 +45,8 @@ end)
 --------------------------------------------------------------------------------------------------------
 local kbjFuncMoveBags = function()
     -- config
-    local xOffset = -4
-    local yOffset = 55
+    local xOffset = -3
+    local yOffset = 46
     -- /config
 
     local Bagframe
