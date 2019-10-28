@@ -1,5 +1,5 @@
-# ZdoScripts
-WoW UI for Lightweight : 238kb now.
+# KhunTark-Scripts
+WoW UI Baseset for Lightweight
 
 ### Replace to Blizzard Interface
 - Actionbar

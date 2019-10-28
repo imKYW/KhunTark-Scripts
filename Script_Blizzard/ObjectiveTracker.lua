@@ -52,3 +52,9 @@ end)
 otFrame.AutoHider:SetScript("OnShow", _G.ObjectiveTracker_Expand)
 
 SetAutoHide()
+
+DurabilityFrame:ClearAllPoints()
+DurabilityFrame:SetMovable(true)
+DurabilityFrame:SetUserPlaced(true)
+DurabilityFrame:SetPoint("TOPRIGHT", Minimap, "BOTTOMLEFT", -100, -10)
+DurabilityFrame:SetMovable(false)
