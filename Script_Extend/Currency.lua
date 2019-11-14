@@ -57,10 +57,10 @@ function KBJcurrencyMoney()
 end
 
 function KBJcurrencySave()
-    if vZSDB == nil then vZSDB = { } end
-    if not vZSDB[playerRealm.."-"..playerFaction] then vZSDB[playerRealm.."-"..playerFaction] = { } end
+    if vKTSDB == nil then vKTSDB = { } end
+    if not vKTSDB[playerRealm.."-"..playerFaction] then vKTSDB[playerRealm.."-"..playerFaction] = { } end
 
-    local currencyDB = vZSDB[playerRealm.."-"..playerFaction]
+    local currencyDB = vKTSDB[playerRealm.."-"..playerFaction]
     local foundPlayer = false
 
     if currencyDB[1] == nil then
@@ -127,7 +127,7 @@ function KBJcurrencyTooltip(self)
     GameTooltip:AddLine(" ")
     GameTooltip:AddLine("Gold in "..GetRealmName(), 0.9, 0.7, 0.2)
 
-    local currencyDB = vZSDB[playerRealm.."-"..playerFaction]
+    local currencyDB = vKTSDB[playerRealm.."-"..playerFaction]
     for i = 1, #currencyDB do
         local name, class, money = unpack(currencyDB[i])
         local color = RAID_CLASS_COLORS[class]
