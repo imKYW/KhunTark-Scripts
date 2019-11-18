@@ -73,49 +73,6 @@ local function OnTooltipSetUnit(self)
     end
 end
 
---local ignoreSubType = {
---    [L["Other"]] = true,
---    [L["Item Enhancement"]] = true,
---}
---local function OnTooltipSetItem(self)
---    local name, link = self:GetItem()
---    if not link then return end
---    self.currentItem = link
---
---    local name, _, quality, _, _, type, subType, stackCount, _, icon, sellPrice = GetItemInfo(link)
---    if not quality then
---        quality = 0
---    end
---
---    if stackCount and stackCount > 1 and self.count then
---        self.count:SetText(stackCount)
---    end
---
---    local r, g, b
---    if type == L["Quest"] then
---        r, g, b = 1, 0.82, 0.2
---    elseif type == L["Tradeskill"] and not ignoreSubType[subType] and quality < 2 then
---        r, g, b = 0.4, 0.73, 1
---    elseif subType == L["Companion Pets"] then
---        local _, id = C_PetJournal.FindPetIDByName(name)
---        if id then
---            local _, _, _, _, petQuality = C_PetJournal.GetPetStats(id)
---            if petQuality then
---                quality = petQuality - 1
---            end
---        end
---    end
---    if quality > 1 and not r then
---        r, g, b = GetItemQualityColor(quality)
---    end
---    if r then
---        self:SetBackdropBorderColor(r, g, b)
---        if self.icon then
---            self.icon:SetBackdropBorderColor(r, g, b)
---        end
---    end
---end
-
 local function SetBackdropStyle(self,style)
     if self.TopOverlay then self.TopOverlay:Hide() end
     if self.BottomOverlay then self.BottomOverlay:Hide() end
@@ -140,11 +97,12 @@ local function SetBackdropStyle(self,style)
 end
 
 local function SetDefaultAnchor(self,parent)
-    self:ClearAllPoints()
     if InCombatLockdown() and not C_PetBattles.IsInBattle() then
         self:SetOwner(parent, "ANCHOR_NONE")
+        self:ClearAllPoints()
         self:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -470, 135)
     else
+        self:ClearAllPoints()
         self:SetOwner(parent, "ANCHOR_CURSOR")
     end
 end
@@ -184,7 +142,7 @@ hooksecurefunc("GameTooltip_SetBackdropStyle", SetBackdropStyle)
 GameTooltip:HookScript("OnTooltipSetUnit", OnTooltipSetUnit)
 
 --loop over tooltips
-local tooltips = { GameTooltip, ItemRefTooltip, ShoppingTooltip1, ShoppingTooltip2, ShoppingTooltip3, ItemRefShoppingTooltip1, ItemRefShoppingTooltip2, WorldMapTooltip, WorldMapCompareTooltip1, WorldMapCompareTooltip2, SmallTextTooltip, EventTraceTooltip, FrameStackTooltip }
+local tooltips = { GameTooltip, ItemRefTooltip, ShoppingTooltip1, ShoppingTooltip2, ShoppingTooltip3, ItemRefShoppingTooltip1, ItemRefShoppingTooltip2, EmbeddedItemTooltip, EmbeddedItemTooltipTooltip, WorldMapTooltip, WorldMapCompareTooltip1, WorldMapCompareTooltip2, SmallTextTooltip, EventTraceTooltip, FrameStackTooltip }
 for i, tooltip in next, tooltips do
     tooltip:SetScale(cfg.scale)
     if tooltip:HasScript("OnTooltipCleared") then
