@@ -1,6 +1,5 @@
-## Interface: 80205
+## Interface: 80300
 ## Title: KhunTark's Scripts
-## Version: 8.2.5.1
 ## Notes: Enable useful script for myself
 ## Author: Zdo-Frostmourne
 ## SavedVariables: vKTSDB
