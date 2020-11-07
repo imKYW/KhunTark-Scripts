@@ -1,3 +1,5 @@
+local _G = _G
+
 local cfg = {}
 cfg.textColor = {0.4,0.4,0.4}
 cfg.bossColor = {1,0,0}
@@ -24,8 +26,6 @@ cfg.backdrop = {
     edgeSize = 16,
     insets = {left=3, right=3, top=3, bottom=3}
 }
-
-local _G = _G
 
 local function GetHexColor(color)
     if color.r then
@@ -74,10 +74,12 @@ local function OnTooltipSetUnit(self)
 end
 
 local function SetBackdropStyle(self,style)
+    local SBD = CreateFrame("Frame", nil, self, BackdropTemplateMixin and "BackdropTemplate")
+
     if self.TopOverlay then self.TopOverlay:Hide() end
     if self.BottomOverlay then self.BottomOverlay:Hide() end
-    self:SetBackdrop(cfg.backdrop)
-    self:SetBackdropColor(unpack(cfg.backdrop.bgColor))
+    SBD:SetBackdrop(cfg.backdrop)
+    SBD:SetBackdropColor(unpack(cfg.backdrop.bgColor))
     local _, itemLink = self:GetItem()
     if itemLink then
         local azerite = C_AzeriteEmpoweredItem.IsAzeriteEmpoweredItemByID(itemLink) or C_AzeriteItem.IsAzeriteItemByID(itemLink) or false
@@ -86,13 +88,13 @@ local function SetBackdropStyle(self,style)
         if itemRarity then r,g,b = GetItemQualityColor(itemRarity) end
         --use azerite coloring or item rarity
         if azerite and cfg.backdrop.azeriteBorderColor then
-            self:SetBackdropBorderColor(unpack(cfg.backdrop.azeriteBorderColor))
+            SBD:SetBackdropBorderColor(unpack(cfg.backdrop.azeriteBorderColor))
         else
-            self:SetBackdropBorderColor(r,g,b,cfg.backdrop.itemBorderColorAlpha)
+            SBD:SetBackdropBorderColor(r,g,b,cfg.backdrop.itemBorderColorAlpha)
         end
     else
         --no item, use default border
-        self:SetBackdropBorderColor(unpack(cfg.backdrop.borderColor))
+        SBD:SetBackdropBorderColor(unpack(cfg.backdrop.borderColor))
     end
 end
 
@@ -138,7 +140,7 @@ GameTooltipStatusBar.bg:SetColorTexture(1,1,1)
 GameTooltipStatusBar.bg:SetVertexColor(0,0,0,0.5)
 
 hooksecurefunc("GameTooltip_SetDefaultAnchor", SetDefaultAnchor)
-hooksecurefunc("GameTooltip_SetBackdropStyle", SetBackdropStyle)
+hooksecurefunc("SharedTooltip_SetBackdropStyle", SetBackdropStyle)
 GameTooltip:HookScript("OnTooltipSetUnit", OnTooltipSetUnit)
 
 --loop over tooltips
