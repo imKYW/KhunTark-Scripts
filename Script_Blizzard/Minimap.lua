@@ -2,6 +2,13 @@ local _, L = ...
 L.timeFont = "Interface\\Addons\\KhunTark-Scripts\\Media\\FontFixel.ttf"
 L.iconOverlay = "Interface\\Addons\\KhunTark-Scripts\\Media\\Overlay_BTN_Minimap"
 
+if not Minimap.SetBackdrop then
+    Mixin(Minimap, BackdropTemplateMixin)
+end
+if not MiniMapTrackingButton.SetBackdrop then
+    Mixin(MiniMapTrackingButton, BackdropTemplateMixin)
+end
+
 Minimap:ClearAllPoints()
 Minimap:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -10, -20)
 Minimap:SetSize(165, 165)
