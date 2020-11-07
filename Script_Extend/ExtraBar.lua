@@ -16,8 +16,8 @@ for i=13, 24 do
     end
 
     -- Show Grid
-    button:SetAttribute("showgrid", 1) --_G['ExtraBarButton'..i-12]:SetAttribute("showgrid", 1)
-    ActionButton_ShowGrid(button, 1) --ActionButton_ShowGrid(_G['ExtraBarButton'..i-12], 1)
+    _G['ExtraBarButton'..i-12]:SetAttribute("showgrid", 1)
+    _G['ExtraBarButton'..i-12]:ShowGrid(1)
 end
 
 ------------------------------------------------------------------------------------------

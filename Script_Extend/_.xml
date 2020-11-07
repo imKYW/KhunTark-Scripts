@@ -3,11 +3,14 @@
 
     <Script file="OverrideHotkey.lua" />
 
-    <Script file="ExtraBar.lua" />
-    <Script file="Currency.lua" />
+    <Script file="ExtraBar.lua" />    
+    <Script file="Currency.lua" />	
     <Script file="AutoRepairSell.lua" />
     <Script file="Misc.lua" />
 
     <Script file="ButtonTemplate.lua" />
+
+    <!--    
+    -->
 
 </Ui>

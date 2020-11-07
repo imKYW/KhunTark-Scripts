@@ -209,10 +209,11 @@ local function KBJactionbar_show_button_slot()
         button.noGrid = nil  --20180728: fix button slot disappear when open/close spellbook
         if ( ALWAYS_SHOW_MULTIBARS == "1" or ALWAYS_SHOW_MULTIBARS == 1 ) then
             button:SetAttribute("showgrid", 1)
-            ActionButton_ShowGrid(button, ACTION_BUTTON_SHOW_GRID_REASON_EVENT)
+            button:ShowGrid(ACTION_BUTTON_SHOW_GRID_REASON_EVENT)
         else
             button:SetAttribute("showgrid", 0)
-            ActionButton_HideGrid(button)
+            button:HideGrid(ACTION_BUTTON_SHOW_GRID_REASON_EVENT)
+            --button:HideGrid()
         end
     end
     for i = 1, NUM_ACTIONBAR_BUTTONS / 2 do
@@ -220,10 +221,11 @@ local function KBJactionbar_show_button_slot()
         button.noGrid = nil  --20180728: fix button slot disappear when open/close spellbook
         if ( ALWAYS_SHOW_MULTIBARS == "1" or ALWAYS_SHOW_MULTIBARS == 1 ) then
             button:SetAttribute("showgrid", 1)
-            ActionButton_ShowGrid(button, ACTION_BUTTON_SHOW_GRID_REASON_EVENT)
+            button:ShowGrid(ACTION_BUTTON_SHOW_GRID_REASON_EVENT)
         else
             button:SetAttribute("showgrid", 0)
-            ActionButton_HideGrid(button)
+            button:HideGrid(ACTION_BUTTON_SHOW_GRID_REASON_EVENT)
+            --button:HideGrid()
         end
     end
 end
