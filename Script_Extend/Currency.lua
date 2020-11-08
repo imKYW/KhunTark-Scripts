@@ -13,9 +13,7 @@ local playerClass = select(2, UnitClass('player'))
 
 -- Funtion ----------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
-local KBJcurrencyEmblems_Format = function(currencyID)
-    local _, amount, icon = GetCurrencyInfo(currencyID)
-
+local KBJcurrencyEmblems_Format = function(amount, icon)
     if amount > 0 then
         local CURRENCY_TEXTURE = "%s\124T"..icon..":%d:%d:2:0\124t"
         return format(CURRENCY_TEXTURE.." ", BreakUpLargeNumbers(amount), 11, 11)
@@ -25,15 +23,14 @@ local KBJcurrencyEmblems_Format = function(currencyID)
 end
 
 local KBJcurrencyEmblems_Update = function()
-    local name, currencyID
     local currencystr
     for i=1, MAX_WATCHED_TOKENS do
-        name, _, _, currencyID = GetBackpackCurrencyInfo(i)
-        if name then
+        local cInfo = C_CurrencyInfo.GetBackpackCurrencyInfo(i)
+        if cInfo then
             if currencystr then
-                currencystr = currencystr..KBJcurrencyEmblems_Format(currencyID).." "
+                currencystr = currencystr..KBJcurrencyEmblems_Format(cInfo.quantity, cInfo.iconFileID).." "
             else
-                currencystr = KBJcurrencyEmblems_Format(currencyID).." "
+                currencystr = KBJcurrencyEmblems_Format(cInfo.quantity, cInfo.iconFileID).." "
             end
         end
     end
@@ -87,16 +84,6 @@ function KBJcurrencyTooltip(self)
     -- Title
     GameTooltip:AddLine("KBJ Currency", 0.9, 0.7, 0.2)
     GameTooltip:AddLine(" ")
-
-    -- AzeriteItem for BfA
-    local azeriteItem = C_AzeriteItem.FindActiveAzeriteItem()
-    if azeriteItem then
-        local azeriteCur, azeriteMax = C_AzeriteItem.GetAzeriteItemXPInfo(azeriteItem)
-        local azeriteLv = C_AzeriteItem.GetPowerLevel(azeriteItem)
-        GameTooltip:AddLine("Azerite Lv : "..azeriteLv, 0.9, 0.7, 0.2)
-        GameTooltip:AddLine("  "..math.floor(azeriteCur/azeriteMax*100+0.5).."% ("..azeriteCur.." / "..azeriteMax..")", 1, 1, 1)
-        GameTooltip:AddLine("  Needed : "..azeriteMax-azeriteCur, 0.6, 0.6, 0.6)
-    end
 
     -- Honor for BfA
     local honorCur, honorMax = UnitHonor("player"), UnitHonorMax("player")
