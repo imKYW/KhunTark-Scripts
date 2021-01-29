@@ -1,4 +1,6 @@
 hooksecurefunc('BuffFrame_UpdateAllBuffAnchors',function()
+    local enchantBuff = 0
+
     -- Buff Button
     for i = 1, 24 do
         local button = _G['BuffButton'..i]
@@ -10,6 +12,19 @@ hooksecurefunc('BuffFrame_UpdateAllBuffAnchors',function()
             button:SetPoint("TOP", BuffButton1, "BOTTOM", 0, -10)
         else
             button:SetPoint("RIGHT", _G['BuffButton'..i-1], "LEFT", -4, 0)
+        end
+        enchantBuff = enchantBuff+1
+    end
+
+    -- TempEnchant
+    for i = 1, 2 do
+        local enchantButton = _G['TempEnchant'..i]
+        if not enchantButton then break end
+        enchantButton:ClearAllPoints()
+        if i == 1 then
+            enchantButton:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMLEFT", -10, 3)
+        else
+            enchantButton:SetPoint("RIGHT", _G['TempEnchant'..i-1], "LEFT", -4, 0)
         end
     end
 

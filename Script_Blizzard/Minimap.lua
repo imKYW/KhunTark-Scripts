@@ -12,7 +12,7 @@ end
 Minimap:ClearAllPoints()
 Minimap:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -10, -20)
 Minimap:SetSize(165, 165)
-Minimap:SetScale(1.2)
+Minimap:SetScale(1.25)
 
 Minimap:SetBackdrop({
 	bgFile =  "Interface\\ChatFrame\\ChatFrameBackground",
@@ -110,10 +110,15 @@ MiniMapChallengeMode:SetPoint("TOPRIGHT", Minimap, 2, 2)
 MiniMapChallengeMode:SetScale(1)
 
 -- Garrison
+--GarrisonLandingPageMinimapButton:ClearAllPoints()
 GarrisonLandingPageMinimapButton:SetParent(Minimap)
-GarrisonLandingPageMinimapButton:ClearAllPoints()
-GarrisonLandingPageMinimapButton:SetPoint("BOTTOMRIGHT", Minimap, 3, -3)
-GarrisonLandingPageMinimapButton:SetScale(0.7)
+--GarrisonLandingPageMinimapButton:SetSize(36, 36)
+--GarrisonLandingPageMinimapButton:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 3, -3)
+hooksecurefunc("GarrisonLandingPageMinimapButton_UpdateIcon", function()
+    Minimap.ClearAllPoints(GarrisonLandingPageMinimapButton)
+    Minimap.SetSize(GarrisonLandingPageMinimapButton, 34, 34)
+    Minimap.SetPoint(GarrisonLandingPageMinimapButton, "BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 3, -2)
+end)
 
 -- Hide Button
 local function OnLeave()
@@ -124,7 +129,7 @@ end
 
 Minimap:HookScript('OnEnter', function()
 	MiniMapTracking:SetAlpha(1)
-	GarrisonLandingPageMinimapButton:SetAlpha(1)
+	--GarrisonLandingPageMinimapButton:SetAlpha(1)
 	end)
 Minimap:HookScript('OnLeave', OnLeave)
 MiniMapTrackingButton:HookScript('OnLeave', OnLeave)

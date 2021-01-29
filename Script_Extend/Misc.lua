@@ -26,6 +26,7 @@ kbjFuncBattleMap:SetScript('OnEvent', function()
 end)
 kbjFuncBattleMap:RegisterEvent('PLAYER_ENTERING_WORLD')
 ]]
+
 --------------------------------------------------------------------------------------------------------
 -- 이동속도 표시 by 아로s
 -- http://www.inven.co.kr/board/powerbbs.php?come_idx=17&l=30068
@@ -38,6 +39,44 @@ end)
 hooksecurefunc("MovementSpeed_OnEnter", function(statFrame, unit)
     statFrame.UpdateTooltip = nil
 end)
+
+--------------------------------------------------------------------------------------------------------
+-- Uganda Bags 1.31 by 우간다짱 (modify : Kimbanjang)
+-- http://wow.inven.co.kr/dataninfo/addonpds/detail.php?idx=5545
+--------------------------------------------------------------------------------------------------------
+local kbjFuncMoveBags = function()
+    -- config
+    local xOffset = -3
+    local yOffset = 46
+
+    local VISIBLE_CONTAINER_SPACING = 3
+    local CONTAINER_WIDTH = 192
+    local CONTAINER_SPACING = 0
+    -- /config
+
+    local Bagframe
+    local screenHeight = GetScreenHeight()
+    local bagFrameHeight = screenHeight - yOffset
+    local column = 0
+
+    for index, frameName in ipairs(ContainerFrame1.bags) do
+        Bagframe = getglobal(frameName)
+        Bagframe:SetClampedToScreen(true)
+
+            if ( index == 1 ) then
+                Bagframe:SetPoint('BOTTOMRIGHT', Bagframe:GetParent(), 'BOTTOMRIGHT', xOffset, yOffset)
+            elseif ( bagFrameHeight < Bagframe:GetHeight() ) then
+                column = column + 1
+                bagFrameHeight = screenHeight - yOffset
+                Bagframe:SetPoint('BOTTOMRIGHT', Bagframe:GetParent(), 'BOTTOMRIGHT', -(column * CONTAINER_WIDTH) + xOffset, yOffset)
+            else
+                Bagframe:SetPoint('BOTTOMRIGHT', ContainerFrame1.bags[index-1], 'TOPRIGHT', 0, CONTAINER_SPACING)
+            end
+
+        bagFrameHeight = bagFrameHeight - Bagframe:GetHeight() - VISIBLE_CONTAINER_SPACING
+    end
+end
+hooksecurefunc("UpdateContainerFrameAnchors", kbjFuncMoveBags)
 
 --------------------------------------------------------------------------------------------------------
 -- 데미지 폰트 변경
@@ -63,9 +102,10 @@ SLASH_RDYCHK2 = "/ㅈㅈ"
 --------------------------------------------------------------------------------------------------------
 local kbjFuncHealPotMacroIcon = CreateFrame('Frame')
 kbjFuncHealPotMacroIcon:SetScript('OnEvent', function(self, event, ...)
-    SetMacroItem("!HP",GetItemCount("생명석") == 0 and "심연 치유 물약" or "생명석")
+    SetMacroItem("!HP",GetItemCount("생명석") == 0 and "영적인 치유 물약" or "생명석")
 end)
 kbjFuncHealPotMacroIcon:RegisterEvent('PLAYER_LOGIN')
+kbjFuncHealPotMacroIcon:RegisterEvent('PLAYER_ENTERING_WORLD')
 kbjFuncHealPotMacroIcon:RegisterEvent('BAG_UPDATE')
 
 --------------------------------------------------------------------------------------------------------
