@@ -11,6 +11,7 @@ local function _CheckLongName(keyName)
     keyName = string.gsub(keyName,"아래 화살표","d")
     keyName = string.gsub(keyName,"오른쪽 화살표","r")
     keyName = string.gsub(keyName,"왼쪽 화살표","l")
+    keyName = string.gsub(keyName,"G","M4")
     return keyName
 end
 
