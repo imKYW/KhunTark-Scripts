@@ -140,8 +140,8 @@ ChatFrameChannelButton:Hide()
 local SocialBTN = _G.QuickJoinToastButton or _G.FriendsMicroButton
 SocialBTN:ClearAllPoints()
 SocialBTN:SetPoint("TOPLEFT", _G.ChatFrame1, "TOPLEFT", 0, -2)
---SocialBTN.ClearAllPoints = Noop
---SocialBTN.SetPoint = Noop
+SocialBTN.ClearAllPoints = Noop
+SocialBTN.SetPoint = Noop
 
 -- Set Main Chat Frame
 for i = 1, NUM_CHAT_WINDOWS do
