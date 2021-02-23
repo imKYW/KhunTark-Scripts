@@ -1,7 +1,7 @@
 ## Interface: 90002
 ## Title: KhunTark's Scripts
 ## Notes: Enable useful script for myself
-## Author: Zdo-Frostmourne
+## Author: KhunTark
 ## SavedVariables: vKTSDB
 
 Script_Blizzard\_.xml
