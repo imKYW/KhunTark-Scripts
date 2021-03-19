@@ -1,8 +1,8 @@
-## Interface: 90002
+## Interface: 90005
 ## Title: KhunTark's Scripts
 ## Notes: Enable useful script for myself
 ## Author: KhunTark
-## RequiredDeps: KhunTark-zzLib
+## RequiredDeps: KhunTark-!Lib
 ## SavedVariables: vKTSDB
 
 Script_Blizzard\_.xml
