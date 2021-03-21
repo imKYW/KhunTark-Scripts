@@ -6,13 +6,11 @@ for i=13, 24 do
     button:SetID(i)
     button:SetScale(0.8)
     if i == 13 then
-        button:SetPoint("LEFT", MultiBarLeftButton4, "RIGHT", 20, 0)
-    elseif i == 17 then
-        button:SetPoint("TOP", ExtraBarButton1, "BOTTOM", 0, -6)
-    elseif i == 21 then
-        button:SetPoint("TOP", ExtraBarButton5, "BOTTOM", 0, -6)
+        button:SetPoint("BOTTOMRIGHT", _G[MICRO_BUTTONS[1]], "BOTTOMLEFT", -7, 1)
+    elseif i%2 ~= 0 then
+        button:SetPoint("BOTTOM", _G['ExtraBarButton'..i-14], "TOP", 0, 4)
     else
-        button:SetPoint("LEFT", _G['ExtraBarButton'..i-13], "RIGHT", 6, 0)
+        button:SetPoint("RIGHT", _G['ExtraBarButton'..i-13], "LEFT", -4, 0)
     end
 
     -- Show Grid
