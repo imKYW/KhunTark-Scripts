@@ -6,11 +6,13 @@ for i=13, 24 do
     button:SetID(i)
     button:SetScale(0.8)
     if i == 13 then
-        button:SetPoint("BOTTOMRIGHT", _G[MICRO_BUTTONS[1]], "BOTTOMLEFT", -7, 1)
-    elseif i%2 ~= 0 then
-        button:SetPoint("BOTTOM", _G['ExtraBarButton'..i-14], "TOP", 0, 4)
+        button:SetPoint("LEFT", MultiBarLeftButton4, "RIGHT", 20, 0)
+    elseif i == 17 then
+        button:SetPoint("TOP", ExtraBarButton1, "BOTTOM", 0, -6)
+    elseif i == 21 then
+        button:SetPoint("TOP", ExtraBarButton5, "BOTTOM", 0, -6)
     else
-        button:SetPoint("RIGHT", _G['ExtraBarButton'..i-13], "LEFT", -4, 0)
+        button:SetPoint("LEFT", _G['ExtraBarButton'..i-13], "RIGHT", 6, 0)
     end
 
     -- Show Grid
@@ -18,8 +20,7 @@ for i=13, 24 do
     _G['ExtraBarButton'..i-12]:ShowGrid(1)
 end
 
-------------------------------------------------------------------------------------------
--- Set Key Binding and some func for safty
+-- Set Key Binding
 ------------------------------------------------------------------------------------------
 BINDING_HEADER_EXTRABAR = "ExtraBar"
 BINDING_NAME_EXTRABARBUTTON1 = "ExtraBar Button 1"
@@ -34,39 +35,3 @@ BINDING_NAME_EXTRABARBUTTON9 = "ExtraBar Button 9"
 BINDING_NAME_EXTRABARBUTTON10 = "ExtraBar Button 10"
 BINDING_NAME_EXTRABARBUTTON11 = "ExtraBar Button 11"
 BINDING_NAME_EXTRABARBUTTON12 = "ExtraBar Button 12"
-
-local function Extrabar_UpdateBindings()
-    for i=1, 12 do
-        local button = _G["ExtraBarButton"..i]
-        local id = button:GetID()
-
-        local hotkey = _G[button:GetName().."HotKey"]
-        local key = GetBindingKey("EXTRABARBUTTON"..i)
-        local text = GetBindingText(key, "KEY_", true)
-
-        if text == "" then
-            hotkey:SetText(RANGE_INDICATOR)
-            hotkey:SetPoint("TOPLEFT", button, "TOPLEFT", 1, -2)
-            hotkey:Hide()
-        else
-            hotkey:SetText(text)
-            hotkey:SetPoint("TOPLEFT", button, "TOPLEFT", -2, -2)
-            hotkey:Show()
-            SetOverrideBindingClick(button, true, key, button:GetName(), "LeftButton")
-        end
-    end
-end
-
-local function Extrabar_OnEvent(self, event, ...)
-    if event == "ACTIONBAR_PAGE_CHANGED" then
-        if GetActionBarPage() ~= 1 then ChangeActionBarPage(1) end
-    elseif event == "PLAYER_ENTERING_WORLD" or event == "UPDATE_BINDINGS" then
-        Extrabar_UpdateBindings()
-    end
-end
-
-local f = CreateFrame("Frame", nil, UIParent)
-f:RegisterEvent("ACTIONBAR_PAGE_CHANGED")
-f:RegisterEvent("UPDATE_BINDINGS")
-f:RegisterEvent('PLAYER_ENTERING_WORLD')
-f:SetScript("OnEvent", Extrabar_OnEvent)
