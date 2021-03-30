@@ -5,6 +5,7 @@
     <Script file="AutoRepairSell.lua" />
     <Script file="RangeDisplay.lua" />
     <Script file="Currency.lua" />
+    <Script file="AlignRuler.lua" />
     <Script file="Misc.lua" />
 
     <Script file="ButtonTemplate.lua" />
