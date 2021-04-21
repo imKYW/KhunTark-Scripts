@@ -13,7 +13,7 @@ local playerClass = select(2, UnitClass('player'))
 
 -- Funtion ----------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
-local KBJcurrencyEmblems_Format = function(amount, icon)
+local function KBJcurrencyEmblems_Format(amount, icon)
     if amount > 0 then
         local CURRENCY_TEXTURE = "%s\124T"..icon..":%d:%d:2:0\124t"
         return format(CURRENCY_TEXTURE.." ", BreakUpLargeNumbers(amount), 11, 11)
@@ -22,7 +22,7 @@ local KBJcurrencyEmblems_Format = function(amount, icon)
     end
 end
 
-local KBJcurrencyEmblems_Update = function()
+local function KBJcurrencyEmblems_Update()
     local currencystr
     for i=1, MAX_WATCHED_TOKENS do
         local cInfo = C_CurrencyInfo.GetBackpackCurrencyInfo(i)
@@ -35,6 +35,11 @@ local KBJcurrencyEmblems_Update = function()
         end
     end
     return currencystr
+end
+
+local function GetGoldString(money)
+    return (("%d"):format(money/10000)).."|TInterface\\MoneyFrame\\UI-GoldIcon:0:0:2:0|t"
+    --return GetMoneyString((("%d"):format(money/10000))*10000).." "
 end
 
 function KBJcurrencyEmblems()
@@ -76,60 +81,59 @@ function KBJcurrencySave()
 end
 
 function KBJcurrencyTooltip(self)
-    local totalGold = 0
+    local realmGold = 0
 
     GameTooltip:ClearLines()
-    GameTooltip:SetOwner(self, 'ANCHOR_BOTTOMLEFT')
+    GameTooltip:SetOwner(self, 'ANCHOR_TOPLEFT')
 
-    -- Title
-    GameTooltip:AddLine("KBJ Currency", 0.9, 0.7, 0.2)
-    GameTooltip:AddLine(" ")
+    -- Realm Gold
+    GameTooltip:AddLine("Gold in "..playerRealm.." ["..playerFaction.."]", 0.9, 0.7, 0.2)
 
-    -- Honor for BfA
-    local honorCur, honorMax = UnitHonor("player"), UnitHonorMax("player")
-    local honorLv = UnitHonorLevel("player")
-    GameTooltip:AddLine("Honor Lv : "..honorLv, 0.9, 0.7, 0.2)
-    GameTooltip:AddLine("  "..math.floor(honorCur/honorMax*100+0.5).."% ("..honorCur.." / "..honorMax..")", 1, 1, 1)
-    GameTooltip:AddLine("  Needed : "..honorMax-honorCur, 0.6, 0.6, 0.6)
-
-    -- Space
-    GameTooltip:AddLine(" ")
-
-    -- Reputation
-    local repName, repStanding, repMin, repMax, repCur = GetWatchedFactionInfo()
-    local displayCur = repCur-repMin
-    local displayMax = repMax-repMin
-    if repName then
-        GameTooltip:AddLine("Reputation : "..repName, 0.9, 0.7, 0.2)
-        GameTooltip:AddLine("  ".._G["FACTION_STANDING_LABEL"..repStanding], 1, 0.9, 0.4)
-        if repMax == repCur then
-            GameTooltip:AddLine("  100% (Grats!)", 1, 1, 1)
-        else
-            GameTooltip:AddLine("  "..math.floor(displayCur/displayMax*100+0.5).."% ("..displayCur.." / "..displayMax..")", 1, 1, 1)
-            GameTooltip:AddLine("  Needed : "..repMax-repCur, 0.6, 0.6, 0.6)
-        end
-    end
-
-    -- Total Gold
-    GameTooltip:AddLine(" ")
-    GameTooltip:AddLine("Gold in "..GetRealmName(), 0.9, 0.7, 0.2)
-
-    local currencyDB = vKTSDB[playerRealm.."-"..playerFaction]
-    for i = 1, #currencyDB do
-        local name, class, money = unpack(currencyDB[i])
+    local realmCDB = vKTSDB[playerRealm.."-"..playerFaction]
+    for i = 1, #realmCDB do
+        local name, class, money = unpack(realmCDB[i])
         local color = RAID_CLASS_COLORS[class]
 
-        GameTooltip:AddDoubleLine(name, GetCoinTextureString(money, 0).."  ", color.r, color.g, color.b, 1, 1, 1)
-        totalGold = totalGold + money
+        GameTooltip:AddDoubleLine("- "..name, GetGoldString(money), color.r, color.g, color.b, 1, 1, 1)
+        realmGold = realmGold + money
     end
 
+    GameTooltip:AddDoubleLine("+ Total", GetGoldString(realmGold), 0.9, 0.7, 0.2)
     GameTooltip:AddLine(" ")
-    GameTooltip:AddDoubleLine("Total", GetCoinTextureString(totalGold, 0).."  ", 0.9, 0.7, 0.2, 1, 1, 1)
+
+    -- TEST
+    if not vKTSDB["아즈샤라-Horde"] then
+        GameTooltip:AddLine("Gold in Account", 0.9, 0.7, 0.2)
+
+        local frostmourneACDB = vKTSDB["Frostmourne-Alliance"]
+        local frostmourneAGold = 0
+        for i = 1, #frostmourneACDB do
+            frostmourneAGold = frostmourneAGold + frostmourneACDB[i][3]
+        end
+        GameTooltip:AddDoubleLine("- Frostmourne", GetGoldString(frostmourneAGold), 0, 0.5, 0.9, 1, 1, 1)
+
+        local tichondriusACDB = vKTSDB["Tichondrius-Alliance"]
+        local tichondriusAGold = 0
+        for i = 1, #tichondriusACDB do
+            tichondriusAGold = tichondriusAGold + tichondriusACDB[i][3]
+        end
+        GameTooltip:AddDoubleLine("- Tichondrius", GetGoldString(tichondriusAGold), 0, 0.5, 0.9, 1, 1, 1)
+
+        local tichondriusHCDB = vKTSDB["Tichondrius-Horde"]
+        local tichondriusHGold = 0
+        for i = 1, #tichondriusHCDB do
+            tichondriusHGold = tichondriusHGold + tichondriusHCDB[i][3]
+        end
+        GameTooltip:AddDoubleLine("- Tichondrius", GetGoldString(tichondriusHGold), 0.8, 0.2, 0.2, 1, 1, 1)
+
+        GameTooltip:AddDoubleLine("+ Total", GetGoldString(frostmourneAGold+tichondriusAGold+tichondriusHGold), 0.9, 0.7, 0.2)
+        GameTooltip:AddLine(" ")
+    end
 
     -- Token
     local tokenPrice = C_WowTokenPublic.GetCurrentMarketPrice()
     if tokenPrice then
-        GameTooltip:AddLine("Token Price : "..GetMoneyString(tokenPrice), 0.9, 0.7, 0.2)
+        GameTooltip:AddDoubleLine("Token Price", GetGoldString(tokenPrice), 0.9, 0.7, 0.2)
     end
 
     GameTooltip:Show()
