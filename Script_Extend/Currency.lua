@@ -10,6 +10,7 @@ local playerRealm = GetRealmName()
 local playerFaction = select(1, UnitFactionGroup('player'))
 local playerName = UnitName('player')
 local playerClass = select(2, UnitClass('player'))
+local extShadowland = {}
 
 -- Funtion ----------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
@@ -38,7 +39,7 @@ local function KBJcurrencyEmblems_Update()
 end
 
 local function GetGoldString(money)
-    return (("%d"):format(money/10000)).."|TInterface\\MoneyFrame\\UI-GoldIcon:0:0:2:0|t"
+    return ("%d"):format(money/10000).."|TInterface\\MoneyFrame\\UI-GoldIcon:0:0:2:0|t"
     --return GetMoneyString((("%d"):format(money/10000))*10000).." "
 end
 
@@ -58,24 +59,44 @@ function KBJcurrencyMoney()
     return GetCoinTextureString(GetMoney(), 0)
 end
 
+function KBJcurrencyExtShadowland()
+    extShadowland.Covenant = KTL.ReturnCovenant()
+    extShadowland.Renown = C_CovenantSanctumUI.GetRenownLevel()
+    extShadowland.Soulash = C_CurrencyInfo.GetCurrencyInfo(1828).quantity
+    extShadowland.Soulfire = C_CurrencyInfo.GetCurrencyInfo(1906).quantity
+end
+
+local function GetCurrencyExtShadowland(soulash, soulfire)
+    if soulash and soulash > 0 and soulfire and soulfire > 0 then
+        return " ("..soulash.."|T3743738:0:0:2:0|t "..soulfire.."|T4067362:0:0:2:0|t)"
+    elseif soulash and soulash > 0 then
+        return " ("..soulash.."|T3743738:0:0:2:0|t)"
+    elseif soulfire and soulfire > 0 then
+        return " ("..soulfire.."|T4067362:0:0:2:0|t)"
+    else
+        return ""
+    end
+end
+
 function KBJcurrencySave()
     if vKTSDB == nil then vKTSDB = { } end
     if not vKTSDB[playerRealm.."-"..playerFaction] then vKTSDB[playerRealm.."-"..playerFaction] = { } end
 
+    KBJcurrencyExtShadowland()
     local currencyDB = vKTSDB[playerRealm.."-"..playerFaction]
     local foundPlayer = false
 
     if currencyDB[1] == nil then
-        currencyDB[1] = { playerName, playerClass, GetMoney() }
+        currencyDB[1] = { playerName, playerClass, GetMoney(), extShadowland.Covenant, extShadowland.Renown, extShadowland.Soulash, extShadowland.Soulfire }
     else
         for i = 1, #currencyDB do
             if currencyDB[i][1] == playerName then
-                currencyDB[i] = { playerName, playerClass, GetMoney() }
+                currencyDB[i] = { playerName, playerClass, GetMoney(), extShadowland.Covenant, extShadowland.Renown, extShadowland.Soulash, extShadowland.Soulfire }
                 foundPlayer = true
             end
         end
         if not foundPlayer then
-            currencyDB[#currencyDB+1] = { playerName, playerClass, GetMoney() }
+            currencyDB[#currencyDB+1] = { playerName, playerClass, GetMoney(), extShadowland.Covenant, extShadowland.Renown, extShadowland.Soulash, extShadowland.Soulfire }
         end
     end
 end
@@ -91,10 +112,22 @@ function KBJcurrencyTooltip(self)
 
     local realmCDB = vKTSDB[playerRealm.."-"..playerFaction]
     for i = 1, #realmCDB do
-        local name, class, money = unpack(realmCDB[i])
+        local name, class, money, covenant, renown, soulash, soulfire = unpack(realmCDB[i])
         local color = RAID_CLASS_COLORS[class]
 
-        GameTooltip:AddDoubleLine("- "..name, GetGoldString(money), color.r, color.g, color.b, 1, 1, 1)
+        if covenant and covenant ~= 'none' then
+            local currencySL = GetCurrencyExtShadowland(soulash, soulfire)
+            GameTooltip:AddDoubleLine(
+                "- "..name.."|cFFBBBBBB|T".."Interface\\AddOns\\KhunTark-Scripts\\Media\\SL_Covenant_"..covenant..".tga:11:11|t"..renown..currencySL,
+                GetGoldString(money),
+                color.r, color.g, color.b,
+                1, 1, 1
+            )
+        else
+            GameTooltip:AddDoubleLine("- "..name, GetGoldString(money), color.r, color.g, color.b, 1, 1, 1)
+        end
+
+
         realmGold = realmGold + money
     end
 
@@ -173,7 +206,7 @@ function KBJcurrencyOnEvent(self, event, ...)
         C_WowTokenPublic.UpdateMarketPrice()
         currencyFrame:SetText(money.."  "..emblems)
         mainFrame:SetWidth(currencyFrame:GetStringWidth())
-        KBJcurrencySave()
+        _G.C_Timer.After(2, function() KBJcurrencySave() end)
     elseif event == 'MERCHANT_CLOSED' then
         emblems = KBJcurrencyEmblems()
         money = KBJcurrencyMoney()
