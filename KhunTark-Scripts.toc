@@ -3,6 +3,7 @@
 ## Notes: Enable useful script for myself
 ## Author: KhunTark
 ## RequiredDeps: KhunTark-!Lib
+## OptionalDeps: Blizzard_InspectUI
 ## SavedVariables: vKTSDB
 
 Script_Blizzard\_.xml

@@ -153,7 +153,7 @@ local ktsPaperDoll_iLV_OnEvent = function(self, event)
     	return
     end
     if event == "PLAYER_EQUIPMENT_CHANGED" then
-        updatePlayerPaperDoll(self);
+        updatePlayerPaperDoll()
     end
 end
 
@@ -162,14 +162,13 @@ end
 local f = CreateFrame("Frame", "KTS_PaperDoll_iLV", UIParent);
 local font, _, flags = NumberFontNormal:GetFont()
 
-f:SetScript("OnEvent", ktsPaperDoll_iLV_OnEvent);
+f:SetScript("OnEvent", ktsPaperDoll_iLV_OnEvent)
 f:RegisterEvent("PLAYER_EQUIPMENT_CHANGED");
 f:RegisterEvent("ADDON_LOADED")
 f:RegisterEvent("PLAYER_REGEN_ENABLED")
 f:RegisterEvent("PLAYER_REGEN_DISABLED")
 
 CharacterModelFrame:HookScript("OnShow", updatePlayerPaperDoll)
-
 CharacterModelFrame:CreateFontString("PTxt")
 PTxt:SetFont(font, KTS_PaperDoll_iLV_FontSize, flags)
 PTxt:SetText("ItemLevel")
@@ -184,7 +183,6 @@ PAvg:Show()
 
 inspectframe = _G["InspectModelFrame"]
 inspectframe:HookScript("OnUpdate", updateInspectPaperDoll)
-
 inspectframe:CreateFontString("TTxt")
 TTxt:SetFont(font, KTS_PaperDoll_iLV_FontSize, flags)
 TTxt:SetText("ItemLevel")
