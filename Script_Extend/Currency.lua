@@ -108,7 +108,7 @@ function KBJcurrencyTooltip(self)
     GameTooltip:SetOwner(self, 'ANCHOR_TOPLEFT')
 
     -- Realm Gold
-    GameTooltip:AddLine("Gold in "..playerRealm.." ["..playerFaction.."]", 0.9, 0.7, 0.2)
+    GameTooltip:AddLine("Currency in "..playerRealm.." ["..playerFaction.."]", 0.9, 0.7, 0.2)
 
     local realmCDB = vKTSDB[playerRealm.."-"..playerFaction]
     for i = 1, #realmCDB do
@@ -136,7 +136,7 @@ function KBJcurrencyTooltip(self)
 
     -- TEST
     if not vKTSDB["아즈샤라-Horde"] then
-        GameTooltip:AddLine("Gold in Account", 0.9, 0.7, 0.2)
+        GameTooltip:AddLine("Currency in Account", 0.9, 0.7, 0.2)
 
         local frostmourneACDB = vKTSDB["Frostmourne-Alliance"]
         local frostmourneAGold = 0
