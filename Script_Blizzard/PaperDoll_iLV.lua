@@ -203,7 +203,7 @@ for slot,n in pairs(_Itemslots) do
     _FontStrings["player"][slot] = gslot:CreateFontString(nil, "OVERLAY")
     _FontStrings["player"][slot]:SetFont(font, KTS_PaperDoll_iLV_FontSize, flags)
     _FontStrings["player"][slot]:SetPoint("TOP", gslot, "TOP", 0, -3)
-    _FontStrings["player"][slot]:SetTextColor(1,1,1)
+    _FontStrings["player"][slot]:SetTextColor(1, 1, 1)
 end
 
 for slot,n in pairs(_Itemslots) do
