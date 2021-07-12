@@ -17,7 +17,7 @@ local function KTS_PaperDoll()
         --avgItemLevel = floor(avgItemLevel);
 
         PaperDollFrame_SetLabelAndText(statFrame, STAT_AVERAGE_ITEM_LEVEL, format("%.1f", displayItemLevel).." / "..format("%.1f", avgItemLevel), false, displayItemLevel);
-        statFrame.tooltip = HIGHLIGHT_FONT_COLOR_CODE..format(PAPERDOLLFRAME_TOOLTIP_FORMAT, STAT_AVERAGE_ITEM_LEVEL).." "..avgItemLevel;
+        statFrame.tooltip = HIGHLIGHT_FONT_COLOR_CODE..format(PAPERDOLLFRAME_TOOLTIP_FORMAT, STAT_AVERAGE_ITEM_LEVEL).." "..floor(avgItemLevel);
         if ( displayItemLevel ~= avgItemLevel ) then
             statFrame.tooltip = statFrame.tooltip .. "  " .. format(STAT_AVERAGE_ITEM_LEVEL_EQUIPPED, avgItemLevelEquipped);
         end
