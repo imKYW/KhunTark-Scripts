@@ -53,8 +53,23 @@ otFrame.AutoHider:SetScript("OnShow", _G.ObjectiveTracker_Expand)
 
 SetAutoHide()
 
+-- 내구도 위치 조정
 DurabilityFrame:ClearAllPoints()
-DurabilityFrame:SetMovable(true)
-DurabilityFrame:SetUserPlaced(true)
-DurabilityFrame:SetPoint("TOPRIGHT", Minimap, "BOTTOMLEFT", -100, -10)
-DurabilityFrame:SetMovable(false)
+DurabilityFrame:SetAlpha(1)
+DurabilityFrame:SetScale(1.2)
+DurabilityFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 250)
+DurabilityFrame.SetPoint = function() end
+
+-- 다인승 탈것 위치 조정
+VehicleSeatIndicator:ClearAllPoints()
+VehicleSeatIndicator:SetScale(0.8)
+VehicleSeatIndicator:SetPoint("BOTTOM", UIParent, "BOTTOM", 670, 7)
+VehicleSeatIndicator.SetPoint = function() end
+
+-- 어둠땅 쐐기 령 위치 조정
+if MawBuffsBelowMinimapFrame and MawBuffsBelowMinimapFrame:IsShown() then
+    MawBuffsBelowMinimapFrame:SetAlpha(0.75)
+    MawBuffsBelowMinimapFrame:SetScale(0.9)
+    MawBuffsBelowMinimapFrame:SetPoint("TOPRIGHT", otFrame, "TOPLEFT", -35, 11)
+    MawBuffsBelowMinimapFrame.SetPoint = function() end
+end
