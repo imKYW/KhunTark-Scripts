@@ -110,15 +110,13 @@ MiniMapChallengeMode:SetPoint("TOPRIGHT", Minimap, 2, 2)
 MiniMapChallengeMode:SetScale(1)
 
 -- Garrison
---GarrisonLandingPageMinimapButton:ClearAllPoints()
+GarrisonLandingPageMinimapButton:ClearAllPoints()
 GarrisonLandingPageMinimapButton:SetParent(Minimap)
---GarrisonLandingPageMinimapButton:SetSize(36, 36)
---GarrisonLandingPageMinimapButton:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 3, -3)
-hooksecurefunc("GarrisonLandingPageMinimapButton_UpdateIcon", function()
-    Minimap.ClearAllPoints(GarrisonLandingPageMinimapButton)
-    Minimap.SetSize(GarrisonLandingPageMinimapButton, 34, 34)
-    Minimap.SetPoint(GarrisonLandingPageMinimapButton, "BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 3, -2)
-end)
+GarrisonLandingPageMinimapButton:SetSize(34, 34)
+GarrisonLandingPageMinimapButton:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 3, -2)
+GarrisonLandingPageMinimapButton.ClearAllPoints = function() end
+GarrisonLandingPageMinimapButton.SetSize = function() end
+GarrisonLandingPageMinimapButton.SetPoint = function() end
 
 -- Hide Button
 local function OnLeave()
