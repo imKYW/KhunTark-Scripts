@@ -163,7 +163,7 @@ local f = CreateFrame("Frame", "KTS_PaperDoll_iLV", UIParent);
 local font, _, flags = NumberFontNormal:GetFont()
 
 f:SetScript("OnEvent", ktsPaperDoll_iLV_OnEvent)
-f:RegisterEvent("PLAYER_EQUIPMENT_CHANGED");
+f:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
 f:RegisterEvent("ADDON_LOADED")
 f:RegisterEvent("PLAYER_REGEN_ENABLED")
 f:RegisterEvent("PLAYER_REGEN_DISABLED")

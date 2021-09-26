@@ -8,6 +8,5 @@
     <Script file="Buff.lua" />
     <Script file="Tooltip.lua" />
     <Script file="PaperDoll.lua" />
-    <Script file="PaperDoll_iLV.lua" />
 
 </Ui>
