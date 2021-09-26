@@ -67,9 +67,7 @@ VehicleSeatIndicator:SetPoint("BOTTOM", UIParent, "BOTTOM", 670, 7)
 VehicleSeatIndicator.SetPoint = function() end
 
 -- 어둠땅 쐐기 령 위치 조정
-if MawBuffsBelowMinimapFrame and MawBuffsBelowMinimapFrame:IsShown() then
-    MawBuffsBelowMinimapFrame:SetAlpha(0.75)
-    MawBuffsBelowMinimapFrame:SetScale(0.9)
-    MawBuffsBelowMinimapFrame:SetPoint("TOPRIGHT", otFrame, "TOPLEFT", -35, 11)
-    MawBuffsBelowMinimapFrame.SetPoint = function() end
-end
+MawBuffsBelowMinimapFrame:SetAlpha(0.75)
+MawBuffsBelowMinimapFrame:SetScale(0.9)
+MawBuffsBelowMinimapFrame:SetPoint("TOPRIGHT", otFrame, "TOPLEFT", -35, 11)
+MawBuffsBelowMinimapFrame.SetPoint = function() end

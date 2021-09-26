@@ -118,7 +118,7 @@ function KBJcurrencyTooltip(self)
         if covenant and covenant ~= 'none' then
             local currencySL = GetCurrencyExtShadowland(soulash, soulfire)
             GameTooltip:AddDoubleLine(
-                "- "..name.."|cFFBBBBBB|T".."Interface\\AddOns\\KhunTark-Scripts\\Media\\SL_Covenant_"..covenant..".tga:11:11|t"..renown..currencySL,
+                "- "..name.."|cFFBBBBBB|T".."Interface\\AddOns\\KhunTark-Scripts\\Media\\SL_Covenant_"..covenant..".tga:11:11|t"..renown, -- no need now ..currencySL
                 GetGoldString(money),
                 color.r, color.g, color.b,
                 1, 1, 1
