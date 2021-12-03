@@ -4,7 +4,7 @@ local ktRD_Font				= "Fonts\\FRIZQT__.ttf"
 local ktRD_FontOutline		= "THINKOUTLINE"
 ---- Target
 local ktRD_Target_FontSize	= 25
-local ktRD_Target_X       	= -50
+local ktRD_Target_X       	= 0
 local ktRD_Target_Y       	= 35
 ---- Focus
 local ktRD_Focus_FontSize 	= 16
@@ -42,12 +42,10 @@ end
 local function ktRD_getRangeBackdropColor(range)
     if not range or range == 0 then return end
 
-    if range > 20 then
-        return 1, 0, 0
-    elseif range > 8 then
-        return 1.0, 0.82, 0
+    if range > 8 then
+        return 1.0, 0, 0
     elseif range > 5 then
-        return 0.055, 0.875, 0.825
+        return 1.0, 0.82, 0
     end
 
     return 0.035, 0.865, 0.0
@@ -55,7 +53,7 @@ end
 
 local function ktRD_OnLoad()
     ktRD_targetFrame:CreateFontString("ktRD_Target_RangeText", "OVERLAY")
-    ktRD_targetFrame:SetPoint("LEFT", UIParent, "CENTER", ktRD_Target_X, ktRD_Target_Y)
+    ktRD_targetFrame:SetPoint("CENTER", UIParent, "CENTER", ktRD_Target_X, ktRD_Target_Y)
     ktRD_targetFrame:SetAlpha(0)
     ktRD_Target_RangeText:SetFont(ktRD_Font, ktRD_Target_FontSize, ktRD_FontOutline)
     ktRD_Target_RangeText:SetPoint("CENTER", ktRD_targetFrame, "CENTER", 1, 0)
@@ -65,7 +63,7 @@ local function ktRD_OnLoad()
 
     ktRD_focusFrame:CreateFontString("ktRD_Focus_RangeText", "OVERLAY")
     ktRD_Focus_RangeText:SetFont(ktRD_Font, ktRD_Focus_FontSize, 'THINOUTLINE')
-    ktRD_Focus_RangeText:SetPoint("LEFT", UIParent, "CENTER", ktRD_Focus_X, ktRD_Focus_Y)
+    ktRD_Focus_RangeText:SetPoint("CENTER", UIParent, "CENTER", ktRD_Focus_X, ktRD_Focus_Y)
     ktRD_Focus_RangeText:SetJustifyH("LEFT")
     ktRD_Focus_RangeText:SetText("")
     ktRD_Focus_RangeText:Show()
