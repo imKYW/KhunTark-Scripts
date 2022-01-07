@@ -32,7 +32,7 @@ local function ktRD_getRangeColor(range)
         return 1.0, 0.82, 0
     elseif range > 20 then
         return 0.035, 0.865, 0.0
-    elseif range > 5 then
+    elseif range > 8 then
         return 0.055, 0.875, 0.825
     end
 
@@ -82,7 +82,7 @@ function ktRD_Target_OnUpdate(self, elapsed)
         if UnitExists("target") then
             local range = KTL:checkRange("target")
 
-            if range == 0 or range > 100 then
+            if range <= 5 or range > 100 then
                 ktRD_targetFrame:SetAlpha(0)
             else
                 ktRD_targetFrame:SetAlpha(1)
@@ -104,7 +104,7 @@ function ktRD_Focus_OnUpdate(self, elapsed)
         if UnitExists("focus") then
             local range = KTL:checkRange("focus")
 
-            if range == 0 or range > 100 then
+            if range <= 5 or range > 100 then
                 ktRD_Focus_RangeText:SetText("")
             else
                 ktRD_Focus_RangeText:SetText(range)
@@ -119,7 +119,7 @@ end
 function ktRD_Target_OnEvent(self, event, arg1, arg2, arg3, ...)
     if event == "PLAYER_TARGET_CHANGED" then
         local range = KTL:checkRange("target")
-        if range == 0 or range > 100 then
+        if range <= 5 or range > 100 then
             ktRD_targetFrame:SetAlpha(0)
         else
             ktRD_targetFrame:SetAlpha(1)
@@ -133,7 +133,7 @@ end
 function ktRD_Focus_OnEvent(self, event, arg1, arg2, arg3, ...)
     if event == "PLAYER_FOCUS_CHANGED" then
         local range = KTL:checkRange("focus")
-        if range == 0 or range > 100 then
+        if range <= 5 or range > 100 then
             ktRD_Focus_RangeText:SetText("")
         else
             ktRD_Focus_RangeText:SetText(range)
