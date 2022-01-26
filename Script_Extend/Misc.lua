@@ -31,7 +31,12 @@ kbjFuncBattleMap:RegisterEvent('PLAYER_ENTERING_WORLD')
 -- 이동속도 표시 by 아로s
 -- http://www.inven.co.kr/board/powerbbs.php?come_idx=17&l=30068
 --------------------------------------------------------------------------------------------------------
-PAPERDOLL_STATCATEGORIES[1].stats[7] = { stat = "MOVESPEED" };
+PAPERDOLL_STATCATEGORIES[1].stats[7] = { stat = "ATTACK_AP" }
+hooksecurefunc("PaperDollFrame_SetAttackPower", function(statFrame, unit)
+    statFrame:Show()
+end)
+
+PAPERDOLL_STATCATEGORIES[1].stats[8] = { stat = "MOVESPEED" }
 hooksecurefunc("PaperDollFrame_SetMovementSpeed", function(statFrame, unit)
     statFrame:Show()
 end)
