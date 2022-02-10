@@ -86,7 +86,8 @@ hooksecurefunc("UpdateContainerFrameAnchors", kbjFuncMoveBags)
 --------------------------------------------------------------------------------------------------------
 -- 데미지 폰트 변경
 --------------------------------------------------------------------------------------------------------
-DAMAGE_TEXT_FONT = "Fonts\\Damage.ttf"
+DAMAGE_TEXT_FONT = "Fonts\\FRIZQT__.ttf"
+-- /console WorldTextScale 1.5 데미지 폰트 스케일   ///    /script SetCVar("WorldTextScale", 1.5)
 
 --------------------------------------------------------------------------------------------------------
 -- /console reloadui
