@@ -62,8 +62,8 @@ DurabilityFrame.SetPoint = function() end
 
 -- 다인승 탈것 위치 조정
 VehicleSeatIndicator:ClearAllPoints()
-VehicleSeatIndicator:SetScale(0.8)
-VehicleSeatIndicator:SetPoint("BOTTOM", UIParent, "BOTTOM", 670, 7)
+VehicleSeatIndicator:SetScale(1)
+VehicleSeatIndicator:SetPoint("BOTTOM", UIParent, "BOTTOM", 630, 130)
 VehicleSeatIndicator.SetPoint = function() end
 
 -- 어둠땅 쐐기 령 위치 조정

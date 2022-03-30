@@ -300,7 +300,6 @@ function rButtonTemplate:StyleAllActionButtons(cfg)
     rButtonTemplate:StyleActionButton(_G["MultiBarBottomRightButton"..i],cfg)
     rButtonTemplate:StyleActionButton(_G["MultiBarRightButton"..i],cfg)
     rButtonTemplate:StyleActionButton(_G["MultiBarLeftButton"..i],cfg)
-    rButtonTemplate:StyleActionButton(_G["ExtraBarButton"..i],cfg)
   end
   for i = 1, 6 do
     rButtonTemplate:StyleActionButton(_G["OverrideActionBarButton"..i],cfg)
@@ -316,6 +315,10 @@ function rButtonTemplate:StyleAllActionButtons(cfg)
   --possess buttons
   for i=1, NUM_POSSESS_SLOTS do
     rButtonTemplate:StyleActionButton(_G["PossessButton"..i],cfg)
+  end
+  --extrabar buttons
+  for i=1, 42 do
+    rButtonTemplate:StyleActionButton(_G["ExtraBarButton"..i],cfg)
   end
 end
 
