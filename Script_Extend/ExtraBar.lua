@@ -35,7 +35,7 @@ for i=13, 24 do
     _G['ExtraBarButton'..i-12]:ShowGrid(1)
 
     -- Hide
-    HideButtonFrame(button, _G['ExtraBarButton'..i-12], 0.7)
+    HideButtonFrame(button, _G['ExtraBarButton'..i-12], 0.4)
 end
 
 for i=85, 114 do
@@ -60,7 +60,7 @@ for i=85, 114 do
     _G['ExtraBarButton'..i-72]:ShowGrid(1)
 
     -- Hide
-    HideButtonFrame(button, _G['ExtraBarButton'..i-72], 0.7)
+    HideButtonFrame(button, _G['ExtraBarButton'..i-72], 0.4)
 end
 
 -- Set Key Binding
