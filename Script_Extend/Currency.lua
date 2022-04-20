@@ -62,20 +62,6 @@ end
 function KBJcurrencyExtShadowland()
     extShadowland.Covenant = KTL.ReturnCovenant()
     extShadowland.Renown = C_CovenantSanctumUI.GetRenownLevel()
-    extShadowland.Soulash = C_CurrencyInfo.GetCurrencyInfo(1828).quantity
-    extShadowland.Soulfire = C_CurrencyInfo.GetCurrencyInfo(1906).quantity
-end
-
-local function GetCurrencyExtShadowland(soulash, soulfire)
-    if soulash and soulash > 0 and soulfire and soulfire > 0 then
-        return " ("..soulash.."|T3743738:0:0:2:0|t "..soulfire.."|T4067362:0:0:2:0|t)"
-    elseif soulash and soulash > 0 then
-        return " ("..soulash.."|T3743738:0:0:2:0|t)"
-    elseif soulfire and soulfire > 0 then
-        return " ("..soulfire.."|T4067362:0:0:2:0|t)"
-    else
-        return ""
-    end
 end
 
 function KBJcurrencySave()
@@ -87,16 +73,16 @@ function KBJcurrencySave()
     local foundPlayer = false
 
     if currencyDB[1] == nil then
-        currencyDB[1] = { playerName, playerClass, GetMoney(), extShadowland.Covenant, extShadowland.Renown, extShadowland.Soulash, extShadowland.Soulfire }
+        currencyDB[1] = { playerName, playerClass, GetMoney(), extShadowland.Covenant, extShadowland.Renown }
     else
         for i = 1, #currencyDB do
             if currencyDB[i][1] == playerName then
-                currencyDB[i] = { playerName, playerClass, GetMoney(), extShadowland.Covenant, extShadowland.Renown, extShadowland.Soulash, extShadowland.Soulfire }
+                currencyDB[i] = { playerName, playerClass, GetMoney(), extShadowland.Covenant, extShadowland.Renown }
                 foundPlayer = true
             end
         end
         if not foundPlayer then
-            currencyDB[#currencyDB+1] = { playerName, playerClass, GetMoney(), extShadowland.Covenant, extShadowland.Renown, extShadowland.Soulash, extShadowland.Soulfire }
+            currencyDB[#currencyDB+1] = { playerName, playerClass, GetMoney(), extShadowland.Covenant, extShadowland.Renown }
         end
     end
 end
@@ -112,11 +98,10 @@ function KBJcurrencyTooltip(self)
 
     local realmCDB = vKTSDB[playerRealm.."-"..playerFaction]
     for i = 1, #realmCDB do
-        local name, class, money, covenant, renown, soulash, soulfire = unpack(realmCDB[i])
+        local name, class, money, covenant, renown = unpack(realmCDB[i])
         local color = RAID_CLASS_COLORS[class]
 
         if covenant and covenant ~= 'none' then
-            local currencySL = GetCurrencyExtShadowland(soulash, soulfire)
             GameTooltip:AddDoubleLine(
                 "- "..name.."|cFFBBBBBB|T".."Interface\\AddOns\\KhunTark-Scripts\\Media\\SL_Covenant_"..covenant..".tga:11:11|t"..renown, -- no need now ..currencySL
                 GetGoldString(money),
@@ -138,13 +123,6 @@ function KBJcurrencyTooltip(self)
     if not vKTSDB["아즈샤라-Horde"] then
         GameTooltip:AddLine("Currency in Account", 0.9, 0.7, 0.2)
 
-        local frostmourneACDB = vKTSDB["Frostmourne-Alliance"]
-        local frostmourneAGold = 0
-        for i = 1, #frostmourneACDB do
-            frostmourneAGold = frostmourneAGold + frostmourneACDB[i][3]
-        end
-        GameTooltip:AddDoubleLine("- Frostmourne", GetGoldString(frostmourneAGold), 0, 0.5, 0.9, 1, 1, 1)
-
         local tichondriusACDB = vKTSDB["Tichondrius-Alliance"]
         local tichondriusAGold = 0
         for i = 1, #tichondriusACDB do
@@ -159,7 +137,7 @@ function KBJcurrencyTooltip(self)
         end
         GameTooltip:AddDoubleLine("- Tichondrius", GetGoldString(tichondriusHGold), 0.8, 0.2, 0.2, 1, 1, 1)
 
-        GameTooltip:AddDoubleLine("+ Total", GetGoldString(frostmourneAGold+tichondriusAGold+tichondriusHGold), 0.9, 0.7, 0.2)
+        GameTooltip:AddDoubleLine("+ Total", GetGoldString(tichondriusAGold+tichondriusHGold), 0.9, 0.7, 0.2)
         GameTooltip:AddLine(" ")
     end
 
