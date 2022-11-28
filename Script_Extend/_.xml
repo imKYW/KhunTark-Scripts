@@ -1,14 +1,9 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-    <Script file="ExtraBar.lua" />
     <Script file="AutoRepairSell.lua" />
-    <Script file="RangeDisplay.lua" />
-    <Script file="Currency.lua" />
-    <Script file="AlignRuler.lua" />
     <Script file="Misc.lua" />
 
-    <Script file="ButtonTemplate.lua" />
     <Script file="OverrideHotkey.lua" />
 
 </Ui>

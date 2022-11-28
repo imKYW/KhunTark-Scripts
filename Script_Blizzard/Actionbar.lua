@@ -119,39 +119,6 @@ local function KBJactionbar_layout()
  end
 hooksecurefunc("UIParent_ManageFramePositions",  KBJactionbar_layout)
 
----------------------------------
--- ## micro buttons and bags ##--
-MicroButtonAndBagsBar:SetScale(0.8)
-MicroButtonAndBagsBar:SetParent(UIParent)   -- show microbuttons when vehicle
-hooksecurefunc("UpdateMicroButtons",function()
-    --small bags
-    --for i= 0, 3 do  _G[ "CharacterBag"..i.."Slot" ]:Hide() end
-    MainMenuBarBackpackButton:SetScale(1.2)
-    MainMenuBarBackpackButton:ClearAllPoints()
-    MainMenuBarBackpackButton:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -8, 8)
-    CharacterBag0Slot:ClearAllPoints()
-    CharacterBag0Slot:SetScale(0.9)
-    CharacterBag0Slot:SetPoint("BOTTOMRIGHT", MainMenuBarBackpackButton, "BOTTOMLEFT", -3, 0)
-    CharacterBag1Slot:ClearAllPoints()
-    CharacterBag1Slot:SetScale(0.9)
-    CharacterBag1Slot:SetPoint("BOTTOMRIGHT", CharacterBag0Slot, "BOTTOMLEFT", -3, 0)
-    CharacterBag2Slot:ClearAllPoints()
-    CharacterBag2Slot:SetScale(0.9)
-    CharacterBag2Slot:SetPoint("BOTTOMRIGHT", CharacterBag1Slot, "BOTTOMLEFT", -3, 0)
-    CharacterBag3Slot:ClearAllPoints()
-    CharacterBag3Slot:SetScale(0.9)
-    CharacterBag3Slot:SetPoint("BOTTOMRIGHT", CharacterBag2Slot, "BOTTOMLEFT", -3, 0)
-
-    -- micro menu bar
-    UpdateMicroButtonsParent(MicroButtonAndBagsBar)
-    _G[MICRO_BUTTONS[1]]:ClearAllPoints()
-    _G[MICRO_BUTTONS[1]]:SetPoint("BOTTOMRIGHT", CharacterBag3Slot, "BOTTOMLEFT", -270, -2)
-    MainMenuBarPerformanceBar:Hide();
-    for _, v in ipairs(MICRO_BUTTONS) do
-        _G[v]:SetScale(0.85)
-    end
-end)
-
 -------------------------------------------------
 -- OverrideBar patch from rActionBarStyler
 OverrideActionBar:SetScale(SCALE)
