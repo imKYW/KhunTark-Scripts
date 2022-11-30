@@ -25,8 +25,7 @@ local function SkinChat(self)
     local name = self:GetName()
     --chat frame resizing
     self:SetClampRectInsets(0, 0, 0, 0)
-    self:SetMaxResize(UIParent:GetWidth()/2, UIParent:GetHeight()/2)
-    self:SetMinResize(100, 50)
+    self:SetResizeBounds(100, 50, UIParent:GetWidth()/2, UIParent:GetHeight()/2)
     self:SetFont(STANDARD_TEXT_FONT, 13, "OUTLINE")
     self:SetShadowOffset(1, -1)
     self:SetShadowColor(0, 0, 0, 0.25)
@@ -128,10 +127,10 @@ YOU_LOOT_MONEY_GUILD = YOU_LOOT_MONEY
 LOOT_MONEY_SPLIT_GUILD = LOOT_MONEY_SPLIT
 
 -- Set Function Button
-ChatFrameMenuButton:HookScript("OnShow", ChatFrameMenuButton.Hide)
 ChatFrameMenuButton:Hide()
-ChatFrameChannelButton:HookScript("OnShow", ChatFrameChannelButton.Hide)
+ChatFrameMenuButton:HookScript("OnShow", ChatFrameMenuButton.Hide)
 ChatFrameChannelButton:Hide()
+ChatFrameChannelButton:HookScript("OnShow", ChatFrameChannelButton.Hide)
 --ChatFrameToggleVoiceDeafenButton:HookScript("OnShow", ChatFrameToggleVoiceDeafenButton.Hide)
 --ChatFrameToggleVoiceDeafenButton:Hide()
 --ChatFrameToggleVoiceMuteButton:HookScript("OnShow", ChatFrameToggleVoiceMuteButton.Hide)
@@ -139,9 +138,9 @@ ChatFrameChannelButton:Hide()
 
 local SocialBTN = _G.QuickJoinToastButton or _G.FriendsMicroButton
 SocialBTN:ClearAllPoints()
-SocialBTN:SetPoint("TOPLEFT", _G.ChatFrame1, "TOPLEFT", 0, -2)
-SocialBTN.ClearAllPoints = Noop
-SocialBTN.SetPoint = Noop
+SocialBTN:SetPoint("TOPRIGHT", _G.ChatFrame1, "TOPLEFT", -1, 4)
+--SocialBTN.ClearAllPoints = Noop
+--SocialBTN.SetPoint = Noop
 
 -- Set Main Chat Frame
 for i = 1, NUM_CHAT_WINDOWS do
