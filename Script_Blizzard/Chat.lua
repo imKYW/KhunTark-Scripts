@@ -33,9 +33,9 @@ local function SkinChat(self)
     self:SetFading(true)
 
     --Hide Sub Button
-    local subButton = _G[name.."ButtonFrame"]
-    subButton:HookScript("OnShow", subButton.Hide)
-    subButton:Hide()
+    --local subButton = _G[name.."ButtonFrame"]
+    --subButton:HookScript("OnShow", subButton.Hide)
+    --subButton:Hide()
 
     --local ScrollTex = _G[name.."ThumbTexture"]
     --ScrollTex:Hide()
@@ -127,10 +127,10 @@ YOU_LOOT_MONEY_GUILD = YOU_LOOT_MONEY
 LOOT_MONEY_SPLIT_GUILD = LOOT_MONEY_SPLIT
 
 -- Set Function Button
-ChatFrameMenuButton:Hide()
-ChatFrameMenuButton:HookScript("OnShow", ChatFrameMenuButton.Hide)
-ChatFrameChannelButton:Hide()
-ChatFrameChannelButton:HookScript("OnShow", ChatFrameChannelButton.Hide)
+--ChatFrameMenuButton:Hide()
+--ChatFrameMenuButton:HookScript("OnShow", ChatFrameMenuButton.Hide)
+--ChatFrameChannelButton:Hide()
+--ChatFrameChannelButton:HookScript("OnShow", ChatFrameChannelButton.Hide)
 --ChatFrameToggleVoiceDeafenButton:HookScript("OnShow", ChatFrameToggleVoiceDeafenButton.Hide)
 --ChatFrameToggleVoiceDeafenButton:Hide()
 --ChatFrameToggleVoiceMuteButton:HookScript("OnShow", ChatFrameToggleVoiceMuteButton.Hide)
@@ -138,7 +138,11 @@ ChatFrameChannelButton:HookScript("OnShow", ChatFrameChannelButton.Hide)
 
 local SocialBTN = _G.QuickJoinToastButton or _G.FriendsMicroButton
 SocialBTN:ClearAllPoints()
-SocialBTN:SetPoint("TOPRIGHT", _G.ChatFrame1, "TOPLEFT", -1, 4)
+SocialBTN:SetPoint("TOPRIGHT", _G.ChatFrame1, "TOPLEFT", -2, 4)
+ChatFrameMenuButton:ClearAllPoints()
+ChatFrameMenuButton:SetPoint("TOP", SocialBTN, "BOTTOM", 0, 0)
+ChatFrameChannelButton:ClearAllPoints()
+ChatFrameChannelButton:SetPoint("TOP", ChatFrameMenuButton, "BOTTOM", 0, 0)
 --SocialBTN.ClearAllPoints = Noop
 --SocialBTN.SetPoint = Noop
 
