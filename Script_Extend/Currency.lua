@@ -1,16 +1,12 @@
 -- Config
-local position_REF = 'BOTTOMRIGHT'
-local position_X = -13
-local position_Y = 5
 local position_Align = 'RIGHT'
 local font = 'Fonts\\FRIZQT__.ttf'
 -- /Config
 
-local playerRealm = GetRealmName()
-local playerFaction = select(1, UnitFactionGroup('player'))
-local playerName = UnitName('player')
-local playerClass = select(2, UnitClass('player'))
-local extShadowland = {}
+local playerRealm = _G.GetRealmName()
+local playerFaction = select(1, _G.UnitFactionGroup('player'))
+local playerName = _G.UnitName('player')
+local playerClass = select(2, _G.UnitClass('player'))
 
 -- Funtion ----------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
@@ -23,10 +19,11 @@ local function KBJcurrencyEmblems_Format(amount, icon)
     end
 end
 
+local MAX_WATCHED_TOKENS = 8
 local function KBJcurrencyEmblems_Update()
     local currencystr
     for i=1, MAX_WATCHED_TOKENS do
-        local cInfo = C_CurrencyInfo.GetBackpackCurrencyInfo(i)
+        local cInfo = _G.C_CurrencyInfo.GetBackpackCurrencyInfo(i)
         if cInfo then
             if currencystr then
                 currencystr = currencystr..KBJcurrencyEmblems_Format(cInfo.quantity, cInfo.iconFileID).." "
@@ -59,30 +56,24 @@ function KBJcurrencyMoney()
     return GetCoinTextureString(GetMoney(), 0)
 end
 
-function KBJcurrencyExtShadowland()
-    extShadowland.Covenant = KTL.ReturnCovenant()
-    extShadowland.Renown = C_CovenantSanctumUI.GetRenownLevel()
-end
-
 function KBJcurrencySave()
     if vKTSDB == nil then vKTSDB = { } end
     if not vKTSDB[playerRealm.."-"..playerFaction] then vKTSDB[playerRealm.."-"..playerFaction] = { } end
 
-    KBJcurrencyExtShadowland()
     local currencyDB = vKTSDB[playerRealm.."-"..playerFaction]
     local foundPlayer = false
 
     if currencyDB[1] == nil then
-        currencyDB[1] = { playerName, playerClass, GetMoney(), extShadowland.Covenant, extShadowland.Renown }
+        currencyDB[1] = { playerName, playerClass, GetMoney() }
     else
         for i = 1, #currencyDB do
             if currencyDB[i][1] == playerName then
-                currencyDB[i] = { playerName, playerClass, GetMoney(), extShadowland.Covenant, extShadowland.Renown }
+                currencyDB[i] = { playerName, playerClass, GetMoney() }
                 foundPlayer = true
             end
         end
         if not foundPlayer then
-            currencyDB[#currencyDB+1] = { playerName, playerClass, GetMoney(), extShadowland.Covenant, extShadowland.Renown }
+            currencyDB[#currencyDB+1] = { playerName, playerClass, GetMoney() }
         end
     end
 end
@@ -98,20 +89,10 @@ function KBJcurrencyTooltip(self)
 
     local realmCDB = vKTSDB[playerRealm.."-"..playerFaction]
     for i = 1, #realmCDB do
-        local name, class, money, covenant, renown = unpack(realmCDB[i])
+        local name, class, money = unpack(realmCDB[i])
         local color = RAID_CLASS_COLORS[class]
 
-        if covenant and covenant ~= 'none' then
-            GameTooltip:AddDoubleLine(
-                "- "..name.."|cFFBBBBBB|T".."Interface\\AddOns\\KhunTark-Scripts\\Media\\SL_Covenant_"..covenant..".tga:11:11|t"..renown, -- no need now ..currencySL
-                GetGoldString(money),
-                color.r, color.g, color.b,
-                1, 1, 1
-            )
-        else
-            GameTooltip:AddDoubleLine("- "..name, GetGoldString(money), color.r, color.g, color.b, 1, 1, 1)
-        end
-
+        GameTooltip:AddDoubleLine("- "..name, GetGoldString(money), color.r, color.g, color.b, 1, 1, 1)
 
         realmGold = realmGold + money
     end
@@ -168,7 +149,7 @@ mainFrame:RegisterEvent('MERCHANT_CLOSED')
 
 mainFrame:SetWidth(50)
 mainFrame:SetHeight(15)
-mainFrame:SetPoint("TOPRIGHT", MainMenuBarBackpackButton, "TOPLEFT", -10, 0)
+mainFrame:SetPoint("TOPRIGHT", MainMenuBarBackpackButton, "TOPLEFT", -15, -6)
 
 local currencyFrame = mainFrame:CreateFontString(nil, 'OVERLAY')
 currencyFrame:SetPoint(position_Align, mainFrame, position_Align, 0, 0)
@@ -212,7 +193,9 @@ mainFrame:SetScript('OnEvent', KBJcurrencyOnEvent)
 mainFrame:SetScript('OnEnter', function() KBJcurrencyTooltip(mainFrame) end)
 mainFrame:SetScript('OnLeave', function() GameTooltip:Hide() end)
 
+--[[
 _G["TokenFramePopupBackpackCheckBox"]:HookScript("OnClick", function()
     currencyFrame:SetText(KBJcurrencyMoney().."  "..KBJcurrencyEmblems())
     mainFrame:SetWidth(currencyFrame:GetStringWidth())
 end)
+]]

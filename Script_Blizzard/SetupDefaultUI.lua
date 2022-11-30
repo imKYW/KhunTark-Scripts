@@ -1,4 +1,10 @@
 --------------------------------------------------------------------------------------------------------
+-- XP Bar
+--------------------------------------------------------------------------------------------------------
+StatusTrackingBarManager:ClearAllPoints()
+StatusTrackingBarManager:SetPoint('TOP', UIParent, 'TOP', 0, 0)
+
+--------------------------------------------------------------------------------------------------------
 -- Micro Buttons and Bags
 --------------------------------------------------------------------------------------------------------
 local MICRO_BUTTONS = {
@@ -20,8 +26,8 @@ MicroButtonAndBagsBar:SetParent(UIParent) -- show microbuttons when vehicle
 
 local KTS_UI_MicroButtonAndBagsBar = function()
     -- bags
-    MainMenuBarBackpackButton:SetScale(1.2)
     MainMenuBarBackpackButton:ClearAllPoints()
+    MainMenuBarBackpackButton:SetScale(1.2)
     MainMenuBarBackpackButton:SetPoint('BOTTOMRIGHT', UIParent, 'BOTTOMRIGHT', -8, 4)
     CharacterBag0Slot:ClearAllPoints()
     CharacterBag0Slot:SetPoint('BOTTOMRIGHT', MainMenuBarBackpackButton, 'BOTTOMLEFT', -10, 0)
@@ -33,40 +39,8 @@ local KTS_UI_MicroButtonAndBagsBar = function()
 end
 
 local KTS_UI_MoveBags = function()
-    -- config
-    local xOffset = 0
-    local yOffset = 5
-
-    --local VISIBLE_CONTAINER_SPACING = 3
-    --local CONTAINER_WIDTH = 192
-    local CONTAINER_SPACING = 0
-    -- /config
-
-    local Bagframe
-    local screenHeight = GetScreenHeight()
-    local bagFrameHeight = screenHeight - yOffset
-    local column = 0
-
     ContainerFrameCombinedBags:ClearAllPoints()
-    ContainerFrameCombinedBags:SetPoint('BOTTOMRIGHT', MainMenuBarBackpackButton, 'TOPRIGHT', xOffset, yOffset);
-    --ContainerFrameCombinedBags:SetScale(MoveBagsF_DB.BagsSetting.scale);
-
-    --for index, frameName in ipairs(ContainerFrame1.bags) do
-    --    Bagframe = getglobal(frameName)
-    --    Bagframe:SetClampedToScreen(true)
---
-    --        if ( index == 1 ) then
-    --            Bagframe:SetPoint('BOTTOMRIGHT', Bagframe:GetParent(), 'BOTTOMRIGHT', xOffset, yOffset)
-    --        elseif ( bagFrameHeight < Bagframe:GetHeight() ) then
-    --            column = column + 1
-    --            bagFrameHeight = screenHeight - yOffset
-    --            Bagframe:SetPoint('BOTTOMRIGHT', Bagframe:GetParent(), 'BOTTOMRIGHT', -(column * CONTAINER_WIDTH) + xOffset, yOffset)
-    --        else
-    --            Bagframe:SetPoint('BOTTOMRIGHT', ContainerFrame1.bags[index-1], 'TOPRIGHT', 0, CONTAINER_SPACING)
-    --        end
---
-    --    bagFrameHeight = bagFrameHeight - Bagframe:GetHeight() - VISIBLE_CONTAINER_SPACING
-    --end
+    ContainerFrameCombinedBags:SetPoint('BOTTOMRIGHT', MainMenuBarBackpackButton, 'TOPRIGHT', 0, 5);
 end
 
 hooksecurefunc('UpdateMicroButtons', KTS_UI_MicroButtonAndBagsBar)
@@ -108,4 +82,8 @@ kbjFuncBattleMap:SetScript('OnEvent', function()
     BattlefieldMapFrame:Show()
 end)
 kbjFuncBattleMap:RegisterEvent('PLAYER_ENTERING_WORLD')
+]]
+
+--[[ 큐버튼
+/run local f=QueueStatusButton; f:SetMovable(true); f:EnableMouse(true); f:SetUserPlaced(true); f:SetScript(“onmousedown”, f.StartMoving); f:SetScript(“onmouseup”, f.StopMovingOrSizing);
 ]]

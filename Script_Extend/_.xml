@@ -2,6 +2,7 @@
 ..\FrameXML\UI.xsd">
 
     <Script file="AutoRepairSell.lua" />
+    <Script file="Currency.lua" />
     <Script file="Misc.lua" />
 
     <Script file="OverrideHotkey.lua" />
