@@ -8,6 +8,7 @@ WoW UI Baseset for Lightweight
 - ObjectiveTracker
 - Buff-Debuff
 - Tooltip
+- Paperdoll
 
 ### Extend Function
 - Currency Bar
@@ -24,5 +25,4 @@ WoW UI Baseset for Lightweight
 - Info Bar (with garbage collection - left click) : has memory leak
 
 ### Todos
-- Item Lv Paperdoll
 - ...

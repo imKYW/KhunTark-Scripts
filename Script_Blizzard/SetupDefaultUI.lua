@@ -5,6 +5,12 @@ StatusTrackingBarManager:ClearAllPoints()
 StatusTrackingBarManager:SetPoint('TOP', UIParent, 'TOP', 0, 0)
 
 --------------------------------------------------------------------------------------------------------
+-- Queue Button
+--------------------------------------------------------------------------------------------------------
+QueueStatusButton:ClearAllPoints()
+QueueStatusButton:SetPoint('TOPRIGHT', UIParent, 'TOPRIGHT', -164, -231)
+
+--------------------------------------------------------------------------------------------------------
 -- Micro Buttons and Bags
 --------------------------------------------------------------------------------------------------------
 local MICRO_BUTTONS = {
@@ -85,5 +91,7 @@ kbjFuncBattleMap:RegisterEvent('PLAYER_ENTERING_WORLD')
 ]]
 
 --[[ 큐버튼
-/run local f=QueueStatusButton; f:SetMovable(true); f:EnableMouse(true); f:SetUserPlaced(true); f:SetScript(“onmousedown”, f.StartMoving); f:SetScript(“onmouseup”, f.StopMovingOrSizing);
+/run local 
+
+
 ]]

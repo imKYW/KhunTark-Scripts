@@ -1,10 +1,33 @@
 local SCALE = 0.8
 
+-----------------------------------------
+local KBJactionbar = CreateFrame("Frame", "KBJactionbar_main", UIParent)
+--KBJactionbar:SetSize(498, 45)
+KBJactionbar:SetPoint("BOTTOM", 0 , 5)
+KBJactionbar:Show()
+--KBJactionbar:SetScale(SCALE)
+-----------------------------------------
+
+for _, bar in next, {
+    MainMenuBar,
+    MultiBarBottomLeft,
+    MultiBarBottomRight,
+    MultiBarLeft,
+    MultiBarRight,
+    MultiBar5,
+    MultiBar6,
+    MultiBar7
+} do
+    bar:SetParent(KBJactionbar)   -- in order to scale them
+end
+
 -- Hide Script
 
 --MainMenuBar.EndCaps.LeftEndCap:Hide()
 --MainMenuBar.EndCaps.RightEndCap:Hide()
 
+
+--PossessActionBar
 local function KTS_Actionbar_layout()
     MainMenuBar:ClearAllPoints()
     MainMenuBar:SetScale(SCALE)
@@ -37,9 +60,6 @@ local function KTS_Actionbar_layout()
     PetActionBar:ClearAllPoints()
     --PetActionBar:SetScale(SCALE)
     PetActionBar:SetPoint("BOTTOMLEFT", MultiBarBottomRight, "TOPLEFT", 3, 5)
-    PossessActionBar:ClearAllPoints()
-    --PossessActionBar:SetScale(SCALE)
-    PossessActionBar:SetPoint("BOTTOMLEFT", MultiBarBottomRight, "TOPLEFT", 3, 5)
     MainMenuBarVehicleLeaveButton:ClearAllPoints()
     MainMenuBarVehicleLeaveButton:SetScale(SCALE+0.4)
     MainMenuBarVehicleLeaveButton:SetPoint("BOTTOMRIGHT", MultiBarBottomRight, "TOPRIGHT", -2, 5)
