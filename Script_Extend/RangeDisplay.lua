@@ -24,7 +24,9 @@ ktRD_targetFrame:SetBackdropBorderColor(0, 0, 0)
 local ktRD_focusFrame = CreateFrame("Frame", "ktRD_Focus", UIParent)
 
 local function ktRD_getRangeColor(range)
-    if not range or range == 0 then return end
+    if not range or range == 0 then
+        return 0.9, 0.9, 0.9
+    end
 
     if range > 40 then
         return 1, 0, 0
@@ -40,7 +42,9 @@ local function ktRD_getRangeColor(range)
 end
 
 local function ktRD_getRangeBackdropColor(range)
-    if not range or range == 0 then return end
+    if not range or range == 0 then
+        return 0.035, 0.865, 0.0
+    end
 
     if range > 8 then
         return 1.0, 0, 0
@@ -72,47 +76,35 @@ local function ktRD_OnLoad()
     ktRD_focusFrame:RegisterEvent("PLAYER_FOCUS_CHANGED")
 end
 
-
-local update = 0
 function ktRD_Target_OnUpdate(self, elapsed)
-    update = update + elapsed
+    if UnitExists("target") then
+        local range = KTL:checkRange("target")
 
-    if update >= 0.25  then
-        update = 0
-        if UnitExists("target") then
-            local range = KTL:checkRange("target")
-
-            if range <= 5 or range > 100 then
-                ktRD_targetFrame:SetAlpha(0)
-            else
-                ktRD_targetFrame:SetAlpha(1)
-                ktRD_Target_RangeText:SetText(range)
-            end
-            ktRD_targetFrame:SetBackdropColor(ktRD_getRangeBackdropColor(range))
-            ktRD_Target_RangeText:SetTextColor(ktRD_getRangeColor(range))
-        else
+        if range <= 5 or range > 100 then
             ktRD_targetFrame:SetAlpha(0)
+        else
+            ktRD_targetFrame:SetAlpha(1)
+            ktRD_Target_RangeText:SetText(range)
         end
+        ktRD_targetFrame:SetBackdropColor(ktRD_getRangeBackdropColor(range))
+        ktRD_Target_RangeText:SetTextColor(ktRD_getRangeColor(range))
+    else
+        ktRD_targetFrame:SetAlpha(0)
     end
 end
 
 function ktRD_Focus_OnUpdate(self, elapsed)
-    update = update + elapsed
+    if UnitExists("focus") then
+        local range = KTL:checkRange("focus")
 
-    if update >= 0.25  then
-        update = 0
-        if UnitExists("focus") then
-            local range = KTL:checkRange("focus")
-
-            if range <= 5 or range > 100 then
-                ktRD_Focus_RangeText:SetText("")
-            else
-                ktRD_Focus_RangeText:SetText(range)
-            end
-            ktRD_Focus_RangeText:SetTextColor(ktRD_getRangeColor(range))
-        else
+        if range <= 5 or range > 100 then
             ktRD_Focus_RangeText:SetText("")
+        else
+            ktRD_Focus_RangeText:SetText(range)
         end
+        ktRD_Focus_RangeText:SetTextColor(ktRD_getRangeColor(range))
+    else
+        ktRD_Focus_RangeText:SetText("")
     end
 end
 
@@ -144,7 +136,7 @@ function ktRD_Focus_OnEvent(self, event, arg1, arg2, arg3, ...)
 end
 
 ktRD_targetFrame:SetScript("OnEvent", ktRD_Target_OnEvent)
-ktRD_targetFrame:SetScript("OnUpdate", ktRD_Target_OnUpdate)
 ktRD_focusFrame:SetScript("OnEvent", ktRD_Focus_OnEvent)
-ktRD_focusFrame:SetScript("OnUpdate", ktRD_Focus_OnUpdate)
 ktRD_OnLoad()
+C_Timer.NewTicker(0.25, ktRD_Target_OnUpdate)
+C_Timer.NewTicker(0.25, ktRD_Focus_OnUpdate)
