@@ -39,7 +39,7 @@ local KTS_UI_MicroButtonAndBagsBar = function()
     CharacterBag0Slot:SetPoint('BOTTOMRIGHT', MainMenuBarBackpackButton, 'BOTTOMLEFT', -10, 0)
 
     -- micro menu bar
-    UpdateMicroButtonsParent(MicroButtonAndBagsBar)
+    --UpdateMicroButtonsParent(MicroButtonAndBagsBar)
     _G[MICRO_BUTTONS[1]]:ClearAllPoints()
     _G[MICRO_BUTTONS[1]]:SetPoint('BOTTOMRIGHT', CharacterReagentBag0Slot, 'BOTTOMLEFT', -210, 1)
 end

@@ -1,4 +1,4 @@
-## Interface: 100002
+## Interface: 100005
 ## Title: KhunTark's Scripts
 ## Notes: Enable useful script for myself
 ## Author: KhunTark
