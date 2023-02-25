@@ -14,17 +14,17 @@ QueueStatusButton:SetPoint('TOPRIGHT', UIParent, 'TOPRIGHT', -164, -231)
 -- Micro Buttons and Bags
 --------------------------------------------------------------------------------------------------------
 local MICRO_BUTTONS = {
-    'CharacterMicroButton',
-    'SpellbookMicroButton',
-    'TalentMicroButton',
-    'AchievementMicroButton',
-    'QuestLogMicroButton',
-    'GuildMicroButton',
-    'LFDMicroButton',
-    'CollectionsMicroButton',
-    'EJMicroButton',
-    'StoreMicroButton',
-    'MainMenuMicroButton'
+    "CharacterMicroButton",
+    "SpellbookMicroButton",
+    "TalentMicroButton",
+    "AchievementMicroButton",
+    "QuestLogMicroButton",
+    "GuildMicroButton",
+    "LFDMicroButton",
+    "EJMicroButton",
+    "CollectionsMicroButton",
+    "MainMenuMicroButton",
+    "StoreMicroButton"
 }
 
 MicroButtonAndBagsBar:SetScale(0.9)
