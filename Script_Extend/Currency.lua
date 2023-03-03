@@ -149,7 +149,7 @@ mainFrame:RegisterEvent('MERCHANT_CLOSED')
 
 mainFrame:SetWidth(50)
 mainFrame:SetHeight(15)
-mainFrame:SetPoint("TOPRIGHT", MainMenuBarBackpackButton, "TOPLEFT", -15, -6)
+mainFrame:SetPoint("TOPRIGHT", MultiBar7, "TOPRIGHT", 0, 18) --MainMenuBarBackpackButton
 
 local currencyFrame = mainFrame:CreateFontString(nil, 'OVERLAY')
 currencyFrame:SetPoint(position_Align, mainFrame, position_Align, 0, 0)

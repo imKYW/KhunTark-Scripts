@@ -5,12 +5,6 @@ StatusTrackingBarManager:ClearAllPoints()
 StatusTrackingBarManager:SetPoint('TOP', UIParent, 'TOP', 0, 0)
 
 --------------------------------------------------------------------------------------------------------
--- Queue Button
---------------------------------------------------------------------------------------------------------
-QueueStatusButton:ClearAllPoints()
-QueueStatusButton:SetPoint('TOPRIGHT', UIParent, 'TOPRIGHT', -164, -231)
-
---------------------------------------------------------------------------------------------------------
 -- Micro Buttons and Bags
 --------------------------------------------------------------------------------------------------------
 local MICRO_BUTTONS = {
@@ -27,26 +21,21 @@ local MICRO_BUTTONS = {
     "StoreMicroButton"
 }
 
-MicroButtonAndBagsBar:SetScale(0.9)
-MicroButtonAndBagsBar:SetParent(UIParent) -- show microbuttons when vehicle
-
 local KTS_UI_MicroButtonAndBagsBar = function()
-    -- bags
-    MainMenuBarBackpackButton:ClearAllPoints()
-    MainMenuBarBackpackButton:SetScale(1.2)
-    MainMenuBarBackpackButton:SetPoint('BOTTOMRIGHT', UIParent, 'BOTTOMRIGHT', -8, 4)
-    CharacterBag0Slot:ClearAllPoints()
-    CharacterBag0Slot:SetPoint('BOTTOMRIGHT', MainMenuBarBackpackButton, 'BOTTOMLEFT', -10, 0)
+    -- Queue Button
+    QueueStatusButton:ClearAllPoints()
+    QueueStatusButton:SetScale(0.8)
+    QueueStatusButton:SetPoint('TOPRIGHT', UIParent, 'TOPRIGHT', -190, -266)
 
-    -- micro menu bar
-    --UpdateMicroButtonsParent(MicroButtonAndBagsBar)
-    _G[MICRO_BUTTONS[1]]:ClearAllPoints()
-    _G[MICRO_BUTTONS[1]]:SetPoint('BOTTOMRIGHT', CharacterReagentBag0Slot, 'BOTTOMLEFT', -210, 1)
+    -- Micro Buttons
+    for i = 1, #MICRO_BUTTONS do
+        _G[MICRO_BUTTONS[i]]:SetScale(0.8)
+    end
 end
 
 local KTS_UI_MoveBags = function()
     ContainerFrameCombinedBags:ClearAllPoints()
-    ContainerFrameCombinedBags:SetPoint('BOTTOMRIGHT', MainMenuBarBackpackButton, 'TOPRIGHT', 0, 5);
+    ContainerFrameCombinedBags:SetPoint('BOTTOMRIGHT', MainMenuBarBackpackButton, 'TOPRIGHT', 0, 3);
 end
 
 hooksecurefunc('UpdateMicroButtons', KTS_UI_MicroButtonAndBagsBar)
